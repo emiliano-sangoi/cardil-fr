@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Cardil" version="4">
+  <OBJECT>
+    <ID name="Cardil" mc="Standard.Project" uid="bdc462b4-5685-46af-a0e9-8c0e04667427"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[Cardil]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Model">
+        <COMPID name="cardil" mc="Standard.Package" uid="09d4167a-4c25-4414-a55b-82cf0329cfd9"/>
+      </COMP>
+      <COMP relation="DiagramRoot">
+        <COMPID name="Cardil" mc="Infrastructure.DiagramSet" uid="18c2a819-0fa2-4b50-a822-019dfd5849db"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
