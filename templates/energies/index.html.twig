@@ -7,7 +7,7 @@
 
             <div id="toolbar">
                 <a href="{{ path('app_energies_new') }}" class="btn btn-primary mb-3">
-                    <i class="fa fa-plus"></i>&nbsp;Create new
+                    <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
                 </a>
             </div>
 
@@ -23,10 +23,10 @@
                 data-url="{{ path('app_energies_index_json') }}">
                 <thead>
                 <tr>
-                    <th data-field="id" data-sortable="true">ID</th>
-                    <th data-field="nom" data-sortable="true">Nom</th>
-                    <th data-field="etat" data-formatter="etatFormatter">En ligne?</th>
-                    <th data-formatter="operateFormatter">Actions</th>
+                    <th data-field="id" data-sortable="true">{{ 'Id'| trans }}</th>
+                    <th data-field="nom" data-sortable="true">{{ 'Name'| trans }}</th>
+                    <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">{{ 'Online'| trans }}</th>
+                    <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
                 </tr>
                 </thead>
             </table>
@@ -42,9 +42,9 @@
 
         function etatFormatter(row, index) {
             if (row == 1) {
-                return '<span class="text-success font-weight-bold">Oui</span>';
+                return '<span class="text-success font-weight-bold"> ' + "{{ "Yes"|trans  }}" + '</span>';
             }
-            return '<span class="text-muted font-weight-bold">Non</span>';
+            return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
         }
 
         var url_show_base = "{{ path('app_energies_show', {'id': '-ID-'}) }}";
@@ -53,10 +53,10 @@
         function operateFormatter(value, row, index) {
             return [
                 '<a href="' + url_show_base.replace('-ID-', row.id)
-                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> Show</a>',
+                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
                 '<span class="mx-1"></span>',
                 '<a href="' + url_edit_base.replace('-ID-', row.id)
-                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> Edit</a>'
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
             ].join('')
         }
 

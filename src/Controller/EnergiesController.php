@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/energies')]
 class EnergiesController extends AbstractController
@@ -19,11 +20,11 @@ class EnergiesController extends AbstractController
 
 
     #[Route('/', name: 'app_energies_index', methods: ['GET'])]
-    public function index(EnergieRepository $energieRepository): Response
+    public function index(EnergieRepository $energieRepository, TranslatorInterface $translator): Response
     {
         return $this->render('energies/index.html.twig', [
             'energies' => $energieRepository->findAll(),
-            'page_title' => 'Energies',
+            'page_title' => $translator->trans('Energy'),
             'active_section' => self::SIDEBAR_ID
         ]);
     }
