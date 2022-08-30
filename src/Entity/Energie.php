@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use App\Repository\EnergieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: EnergieRepository::class)]
 #[ORM\Table(name: "energies")]
-class Energie
+class Energie implements \JsonSerializable
 {
+    const ETAT_OUI = 1;
+    const ETAT_NON = 2;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,7 +26,7 @@ class Energie
     private ?int $etat = null;
 
     #[ORM\Column]
-    private ?int $ordre = null;
+    private ?int $ordre = 0;
 
     public function getId(): ?int
     {
@@ -62,5 +67,31 @@ class Energie
         $this->ordre = $ordre;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'etat' => $this->etat,
+            'ordre' => $this->ordre,
+        ];
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('nom', new Assert\NotBlank([
+            'message' => 'Required field.',
+        ]));
+
+        $metadata->addPropertyConstraint('etat', new Assert\NotBlank([
+            'message' => 'Required field.',
+        ]));
+
+        $metadata->addPropertyConstraint('etat', new Assert\Choice([
+            'choices' => [1, 2],
+            'message' => 'Choose a valid genre.',
+        ]));
     }
 }

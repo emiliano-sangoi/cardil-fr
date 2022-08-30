@@ -41,6 +41,7 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DefaultController',
             'page_title' => 'Dashboard',
+            'active_section' => 1,
             'chart' => $chart
         ]);
     }

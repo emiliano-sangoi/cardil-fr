@@ -11,26 +11,23 @@ import './styles/main.scss';
 // start the Stimulus application
 import './bootstrap';
 
+/*
+* Activar JQuery:
+* https://stackoverflow.com/questions/48971680/webpack-encore-is-not-defined
+* */
+const $ = require('jquery');
+
+// create global $ and jQuery variables
+global.$ = global.jQuery = $;
+
+
 //=================================================================================
 // Twitter Bootstrap JS
-//const $ = require('jquery');
-
-
-require('jquery');
-
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
 
-// or you can include specific pieces
-// require('bootstrap/js/dist/tooltip');
-// require('bootstrap/js/dist/popover');
-
-$(document).ready(function() {
-   // $('[data-toggle="popover"]').popover();
-});
-
 import './sb-admin2/js/sb-admin-2';
 
+require('bootstrap-table');
 
-//import './sb-admin2/js/chart-area-demo.js';
