@@ -32,9 +32,13 @@
         <COMPID name="Pages" mc="Standard.Class" uid="49685078-747d-4ff6-9a56-5c6600babdfa"/>
         <COMPID name="Parameters" mc="Standard.Class" uid="01c6a6e4-8104-4324-b9fb-a57641b01b73"/>
         <COMPID name="SIVs" mc="Standard.Class" uid="b80d4dab-2df6-405f-a570-3492114fd0e2"/>
+        <COMPID name="Robots" mc="Standard.Class" uid="5570958c-c389-43e6-9f3e-305d29db9f73"/>
+        <COMPID name="Transports" mc="Standard.Class" uid="9e1d6180-7d73-4f71-b963-6864d49ea2b4"/>
+        <COMPID name="Modules" mc="Standard.Class" uid="1fd40ee5-d496-45d8-8ba4-5f357a11ad6c"/>
+        <COMPID name="Variables" mc="Standard.Class" uid="fbf8e331-9a36-464f-a3ac-396618f9c2e9"/>
       </COMP>
       <COMP relation="Product">
-        <COMPID name="cardil Class diagram" mc="Standard.ClassDiagram" uid="5864ea93-c3dc-4e21-8e1e-ce50e1225fb7"/>
+        <COMPID name="Diagrama DB Original" mc="Standard.ClassDiagram" uid="5864ea93-c3dc-4e21-8e1e-ce50e1225fb7"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

@@ -1,0 +1,17 @@
+INSERT INTO `pays` (`id`, `nom`, `abrev`, `ordre`) VALUES
+(1, 'France', 'Fr', 1),
+(2, 'Belgique', 'Be', 2),
+(3, 'Italie', 'It', 3),
+(4, 'Espagne', 'ES', 4),
+(5, 'Luxembourg', 'LU', 5),
+(6, 'Allemagne', 'DE', 6),
+(7, 'Hollande', 'NL', 7),
+(8, 'Danemark', 'DK', 8),
+(9, 'Pologne', 'PL', 9),
+(10, 'Roumanie', 'RO', 10),
+(11, 'R&eacute;publique tcheque', 'CZ', 11),
+(12, 'CEE', 'CE', 12),
+(13, 'USA', 'US', 13),
+(14, 'Angleterre', 'UK', 14),
+(15, 'Lituanie', 'LT', 15),
+(16, 'Suisse', 'CH', 16);

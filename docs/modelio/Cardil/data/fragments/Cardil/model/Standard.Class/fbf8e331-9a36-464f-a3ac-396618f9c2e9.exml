@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SIVs" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Variables" version="4">
   <OBJECT>
-    <ID name="SIVs" mc="Standard.Class" uid="b80d4dab-2df6-405f-a570-3492114fd0e2"/>
+    <ID name="Variables" mc="Standard.Class" uid="fbf8e331-9a36-464f-a3ac-396618f9c2e9"/>
     <PID name="cardil" mc="Standard.Package" uid="09d4167a-4c25-4414-a55b-82cf0329cfd9"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[SIVs]]></ATT>
+      <ATT name="Name"><![CDATA[Variables]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="regions" mc="Standard.AssociationEnd" uid="6f9cc924-01f6-4a4f-a66f-618d1b9d74fa"/>
+          <ID name="modules" mc="Standard.AssociationEnd" uid="1b07c1ca-b5b9-468f-b12e-2943c605542d"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsAssociation</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -30,16 +30,16 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[regions]]></ATT>
+            <ATT name="Name"><![CDATA[modules]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Regions" mc="Standard.Class" uid="01a90849-e1df-4c60-9a01-2512e5348703"/>
+              <ID name="Modules" mc="Standard.Class" uid="1fd40ee5-d496-45d8-8ba4-5f357a11ad6c"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="f6c71163-da08-49b8-b12d-a7f4ef8d9651"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="8a1858f2-f9cf-4c5a-852c-0bced506bbea"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -57,13 +57,13 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="regions" mc="Standard.AssociationEnd" uid="6f9cc924-01f6-4a4f-a66f-618d1b9d74fa"/>
+                    <COMPID name="modules" mc="Standard.AssociationEnd" uid="1b07c1ca-b5b9-468f-b12e-2943c605542d"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="?" mc="Standard.Association" uid="c0a5569a-b55b-414a-b0ea-a5d4a8cc71c8"/>
+                      <ID name="" mc="Standard.Association" uid="c64e489a-d1b4-4463-be47-5c93d976dbb4"/>
                       <ATTRIBUTES>
-                        <ATT name="Name"><![CDATA[?]]></ATT>
+                        <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
                       </ATTRIBUTES>
                       <DEPENDENCIES></DEPENDENCIES>
@@ -73,7 +73,7 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="?" mc="Standard.Association" uid="c0a5569a-b55b-414a-b0ea-a5d4a8cc71c8"/>
+              <COMPID name="" mc="Standard.Association" uid="c64e489a-d1b4-4463-be47-5c93d976dbb4"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
