@@ -8,9 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
-class DefaultController extends AbstractController
+class DashboardController extends AbstractController
 {
-    #[Route('/', name: 'app_default')]
+    #[Route('/', name: 'app_dashboard')]
     public function index(ChartBuilderInterface $chartBuilder): Response
     {
 
@@ -38,7 +38,7 @@ class DefaultController extends AbstractController
         ]);
 
 
-        return $this->render('default/index.html.twig', [
+        return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DefaultController',
             'chart' => $chart
         ]);
