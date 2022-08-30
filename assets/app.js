@@ -6,7 +6,7 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import './styles/main.scss';
 
 // start the Stimulus application
 import './bootstrap';
@@ -23,5 +23,5 @@ require('bootstrap');
 // require('bootstrap/js/dist/popover');
 
 $(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
+   // $('[data-toggle="popover"]').popover();
 });
