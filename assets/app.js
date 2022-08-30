@@ -13,7 +13,11 @@ import './bootstrap';
 
 //=================================================================================
 // Twitter Bootstrap JS
-const $ = require('jquery');
+//const $ = require('jquery');
+
+
+require('jquery');
+
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
@@ -25,3 +29,8 @@ require('bootstrap');
 $(document).ready(function() {
    // $('[data-toggle="popover"]').popover();
 });
+
+import './sb-admin2/js/sb-admin-2';
+
+
+//import './sb-admin2/js/chart-area-demo.js';

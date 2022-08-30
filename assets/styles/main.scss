@@ -1,7 +1,33 @@
 // assets/styles/main.scss
 
 // customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
+$primary: #ff7a0a;
+
+// Import Custom SB Admin 2 Variables (Overrides Default Bootstrap Variables)
+@import "../sb-admin2/scss/variables.scss";
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+// Import Custom SB Admin 2 Mixins and Components
+@import "../sb-admin2/scss/mixins.scss";
+@import "../sb-admin2/scss/global.scss";
+@import "../sb-admin2/scss/utilities.scss";
+
+// Custom Components
+@import "../sb-admin2/scss/dropdowns.scss";
+@import "../sb-admin2/scss/navs.scss";
+@import "../sb-admin2/scss/buttons.scss";
+@import "../sb-admin2/scss/cards.scss";
+@import "../sb-admin2/scss/charts.scss";
+@import "../sb-admin2/scss/login.scss";
+@import "../sb-admin2/scss/error.scss";
+@import "../sb-admin2/scss/footer.scss";
+
+
+//@import "~fontawesome-free/scss/fontawesome.scss";
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
