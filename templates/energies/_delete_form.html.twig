@@ -1,6 +1,6 @@
 <form method="post" class="d-inline" action="{{ path('app_energies_delete', {'id': energie.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ energie.id) }}">
     <button class="btn btn-outline-danger">
-        <i class="fa fa-trash"></i>&nbsp;Supprimer
+        <i class="fa fa-trash"></i>&nbsp;{{ "Delete" | trans }}
     </button>
 </form>

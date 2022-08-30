@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Energie;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Entity\Marque;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EnergieType extends AbstractType
+class MarqueType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -17,7 +17,7 @@ class EnergieType extends AbstractType
             ->add('nom', TextType::class, [
                 'label' => 'Nomme',
                 'label_attr' => [ 'class' => 'font-weight-bold']
-               // 'help' => 'This field must be unique',
+                // 'help' => 'This field must be unique',
             ]);
 
         $builder
@@ -25,21 +25,20 @@ class EnergieType extends AbstractType
                 'label' => 'En ligne?',
                 'label_attr' => [ 'class' => 'font-weight-bold'],
                 'choices' => [
-                    'Oui' => Energie::ETAT_OUI,
-                    'Non' => Energie::ETAT_NON,
+                    'Oui' => Marque::ETAT_OUI,
+                    'Non' => Marque::ETAT_NON,
                 ],
-               'expanded' => true,
-               'choice_attr' => ['class' => 'mx-5'],
+                'expanded' => true,
+                'choice_attr' => ['class' => 'mx-5'],
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Energie::class,
+            'data_class' => Marque::class,
             'attr' => [
-                'id' => 'form_energie'
+                'id' => 'form_marque'
             ]
         ]);
     }

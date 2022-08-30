@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EnergieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -84,6 +85,11 @@ class Energie implements \JsonSerializable
         $metadata->addPropertyConstraint('nom', new Assert\NotBlank([
             'message' => 'Required field.',
         ]));
+
+        $metadata->addConstraint(new UniqueEntity([
+            'fields' => 'nom'
+        ]));
+
 
         $metadata->addPropertyConstraint('etat', new Assert\NotBlank([
             'message' => 'Required field.',

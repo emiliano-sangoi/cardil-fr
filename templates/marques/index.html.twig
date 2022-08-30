@@ -6,7 +6,7 @@
         <div class="col-12">
 
             <div id="toolbar">
-                <a href="{{ path('app_energies_new') }}" class="btn btn-primary mb-3">
+                <a href="{{ path('app_marques_new') }}" class="btn btn-primary mb-3">
                     <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
                 </a>
             </div>
@@ -22,7 +22,7 @@
                 data-sortable="true"
                 data-pagination="true"
                 data-header-style="headerStyle"
-                data-url="{{ path('app_energies_index_json') }}">
+                data-url="{{ path('app_marques_index_json') }}">
                 <thead>
                 <tr>
                     <th data-field="id" data-sortable="true">{{ 'Id'| trans }}</th>
@@ -49,8 +49,8 @@
             return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
         }
 
-        var url_show_base = "{{ path('app_energies_show', {'id': '-ID-'}) }}";
-        var url_edit_base = "{{ path('app_energies_edit', {'id': '-ID-'}) }}";
+        var url_show_base = "{{ path('app_marques_show', {'id': '-ID-'}) }}";
+        var url_edit_base = "{{ path('app_marques_edit', {'id': '-ID-'}) }}";
 
         function operateFormatter(value, row, index) {
             return [
@@ -68,3 +68,4 @@
 
     </script>
 {% endblock %}
+
