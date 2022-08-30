@@ -51,7 +51,7 @@ class EnergiesController extends AbstractController
             'energie' => $energie,
             'form' => $form,
             'active_section' => self::SIDEBAR_ID,
-            'page_title' => 'Energies - Ajouter',
+            'page_title' => 'Energies',
         ]);
     }
 

@@ -25,8 +25,8 @@ class EnergieType extends AbstractType
                 'label' => 'En ligne?',
                 'label_attr' => [ 'class' => 'font-weight-bold'],
                 'choices' => [
-                    'Oui' => 1,
-                    'Non' => 2,
+                    'Oui' => Energie::ETAT_OUI,
+                    'Non' => Energie::ETAT_NON,
                 ],
                'expanded' => true,
                'choice_attr' => ['class' => 'mx-5'],

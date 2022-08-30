@@ -2,37 +2,35 @@
 
 {% block main_content %}
 
+    <div class="row">
+        <div class="col-12">
 
+            <div id="toolbar">
+                <a href="{{ path('app_energies_new') }}" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus"></i>&nbsp;Create new
+                </a>
+            </div>
 
-<div class="row">
-    <div class="col-12">
-
-        <div id="toolbar">
-            <a href="{{ path('app_energies_new') }}" class="btn btn-primary mb-3">
-                <i class="fa fa-plus"></i>&nbsp;Create new
-            </a>
+            <table
+                id="table"
+                class="table bg-white text-dark"
+                data-toggle="table"
+                data-search="true"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-sortable="true"
+                data-url="{{ path('app_energies_index_json') }}">
+                <thead>
+                <tr>
+                    <th data-field="id" data-sortable="true">ID</th>
+                    <th data-field="nom" data-sortable="true">Nom</th>
+                    <th data-field="etat" data-formatter="etatFormatter">En ligne?</th>
+                    <th data-formatter="operateFormatter">Actions</th>
+                </tr>
+                </thead>
+            </table>
         </div>
-
-    <table
-        id="table"
-        class="table bg-white text-dark"
-        data-toggle="table"
-        data-search="true"
-        data-toolbar="#toolbar"
-        data-show-refresh="true"
-        data-show-columns="true"
-        data-sortable="true"
-        data-url="{{ path('app_energies_index_json') }}">
-        <thead>
-        <tr>
-            <th data-field="id" data-sortable="true">ID</th>
-            <th data-field="nom" data-sortable="true">Nom</th>
-            <th data-field="etat" data-formatter="etatFormatter">En ligne?</th>
-            <th data-formatter="operateFormatter">Actions</th>
-        </tr>
-        </thead>
-    </table>
-    </div>
     </div>
 
 {% endblock %}
@@ -40,38 +38,14 @@
 {% block javascripts %}
     {{ parent() }}
 
-
     <script>
 
-
-
         function etatFormatter(row, index) {
-            if(row == 1){
+            if (row == 1) {
                 return '<span class="text-success font-weight-bold">Oui</span>';
             }
             return '<span class="text-muted font-weight-bold">Non</span>';
         }
-
-        // function rowStyle(row, index) {
-        //     var classes = [
-        //         'bg-blue',
-        //         'bg-green',
-        //         'bg-orange',
-        //         'bg-yellow',
-        //         'bg-red'
-        //     ]
-        //
-        //     if (index % 2 === 0 && index / 2 < classes.length) {
-        //         return {
-        //             classes: classes[index / 2]
-        //         }
-        //     }
-        //     return {
-        //         css: {
-        //             color: 'blue'
-        //         }
-        //     }
-        // }
 
         var url_show_base = "{{ path('app_energies_show', {'id': '-ID-'}) }}";
         var url_edit_base = "{{ path('app_energies_edit', {'id': '-ID-'}) }}";
@@ -86,8 +60,5 @@
             ].join('')
         }
 
-        $(document).ready(function () {
-
-        });
     </script>
 {% endblock %}
