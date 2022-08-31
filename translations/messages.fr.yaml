@@ -3,7 +3,7 @@ New: Ajouter
 Add:  Ajouter
 Edit energie: Edition de l'énergie
 Name: Nom
-Online: En ligne
+Online: En ligne?
 Yes: Oui
 No: Non
 State: Etat
@@ -11,17 +11,19 @@ Save changes: Enregistrer
 Save: Enregistrer
 Edit: Modifier
 Actions: Actions
-Show: Show
+Show: Regarder
 Search: Recherche
 Energy: Énergies
 Back: Retour
 Delete groups: Suppression groupées
 Stock: Stock
 Doors: Portes
-Confirm delete?: Confirmer la suppression?
 Brands: Marques
 Delete: Supprimer
 Models: Modèles
+Model: Modèle
 Models amount: Modèles quantit
+Brands & Models: Marques & Modéles
 List: Liste
 Transport type: Transport type
+Are you sure you want to delete this item?: Confirmer la suppression ?

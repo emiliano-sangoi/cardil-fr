@@ -1,13 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}Edit Model{% endblock %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-5">
 
-{% block body %}
-    <h1>Edit Model</h1>
+            {% embed 'models/_form.html.twig' %}
+                {% block form_actions %}
+                {% endblock %}
+            {% endembed %}
 
-    {{ include('models/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_models_index') }}">back to list</a>
-
-    {{ include('models/_delete_form.html.twig') }}
+            <div class="row mt-4 mt-lg-5">
+                <div class="col-12 col-lg-6">
+                    <button class="btn btn-primary" type="submit" form="{{ form.vars.attr.id }}">
+                        <i class="fa fa-check"></i>&nbsp;{{ "Save changes"|trans }}
+                    </button>
+                    <a href="{{ path('app_models_by_marque_index', { id: model.marque.id }) }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                    </a>
+                </div>
+                <div class="col-12 col-lg-6 text-lg-right   ">
+                    {{ include('models/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

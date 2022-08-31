@@ -23,7 +23,7 @@ class MarquesController extends AbstractController
     {
         return $this->render('marques/index.html.twig', [
             'marques' => $marqueRepository->findAll(),
-            'page_title' => $translator->trans('Brands'),
+            'page_title' => $translator->trans('Brands & Models'),
             'active_section' => self::SIDEBAR_ID
         ]);
     }
@@ -32,26 +32,6 @@ class MarquesController extends AbstractController
     public function indexJson(MarqueRepository $marqueRepository): Response
     {
         return new JsonResponse($marqueRepository->findAll());
-    }
-
-    #[Route('/{id}/models', name: 'app_models_by_marque_index', methods: ['GET'])]
-    public function getModelsByMarque(Marque $marque, ModelRepository $modelRepository, TranslatorInterface $translator): Response
-    {
-
-        $titulo  = $marque->getNom() . ' - ' . $translator->trans('Models');
-
-        return $this->render('models/index.html.twig', [
-            'models' => $modelRepository->findBy(['marque' => $marque]),
-            'marque' => $marque,
-            'page_title' => $titulo,
-            'active_section' => self::SIDEBAR_ID
-        ]);
-    }
-
-    #[Route('/{id}/models/json', name: 'app_models_by_marque_index_json', methods: ['GET'])]
-    public function getModelsByMarqueJson(Marque $marque, ModelRepository $modelRepository): Response
-    {
-        return new JsonResponse($modelRepository->findBy(['marque' => $marque]));
     }
 
     #[Route('/new', name: 'app_marques_new', methods: ['GET', 'POST'])]
@@ -67,9 +47,11 @@ class MarquesController extends AbstractController
             return $this->redirectToRoute('app_marques_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $titulo = $translator->trans('Brands & Models') . ' - ' . $translator->trans('Add');
+
         return $this->renderForm('marques/new.html.twig', [
             'marque' => $marque,
-            'page_title' => $translator->trans('Brands'),
+            'page_title' => $titulo,
             'active_section' => self::SIDEBAR_ID,
             'form' => $form,
         ]);
@@ -82,9 +64,11 @@ class MarquesController extends AbstractController
             'disabled' => true
         ]);
 
+        $titulo = $translator->trans('Brands & Models') . ' - ' . $translator->trans('Show');
+
         return $this->render('marques/show.html.twig', [
             'marque' => $marque,
-            'page_title' => $translator->trans('Brands'),
+            'page_title' => $titulo,
             'active_section' => self::SIDEBAR_ID,
             'form' => $form->createView(),
         ]);
@@ -102,9 +86,11 @@ class MarquesController extends AbstractController
             return $this->redirectToRoute('app_marques_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $titulo = $translator->trans('Brands & Models') . ' - ' . $translator->trans('Edit');
+
         return $this->renderForm('marques/edit.html.twig', [
             'marque' => $marque,
-            'page_title' => $translator->trans('Brands'),
+            'page_title' => $titulo,
             'active_section' => self::SIDEBAR_ID,
             'form' => $form,
         ]);

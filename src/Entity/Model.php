@@ -18,6 +18,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\UniqueConstraint(name: 'uk_models', columns: ['nom', 'type_transport'])]
 class Model implements \JsonSerializable
 {
+    const ETAT_OUI = 1;
+    const ETAT_NON = 2;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -33,7 +36,7 @@ class Model implements \JsonSerializable
     private ?int $etat = null;
 
     #[ORM\Column]
-    private ?int $ordre = null;
+    private ?int $ordre = 0;
 
     #[ORM\ManyToOne(inversedBy: 'models')]
     #[ORM\JoinColumn(nullable: false)]
@@ -122,7 +125,7 @@ class Model implements \JsonSerializable
         ]));
 
         $metadata->addConstraint(new UniqueEntity([
-            'fields' => [ 'nom', 'type_transport' ]
+            'fields' => [ 'nom', 'typeTransport' ]
         ]));
 
         $metadata->addPropertyConstraint('etat', new Assert\NotBlank([

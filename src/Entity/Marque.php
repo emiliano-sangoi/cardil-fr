@@ -91,6 +91,11 @@ class Marque implements \JsonSerializable
         ];
     }
 
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('nom', new Assert\NotBlank([
