@@ -7,6 +7,7 @@ INSERT INTO `marques` (`id`, `nom`, `etat`, `ordre`) VALUES
 (7, 'PEUGEOT', 1, 2),
 (8, 'NISSAN', 1, 7),
 (9, 'MITSUBISHI', 2, 9),
+(10, 'TOYOTA', 2, 7),
 (11, 'HYUNDAI', 0, 5),
 (12, 'ALPHA ROMEO', 2, 7),
 (13, 'BMW', 2, 6),

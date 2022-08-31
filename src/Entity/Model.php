@@ -2,42 +2,42 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\ModelRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: MarqueRepository::class)]
-#[ORM\Table(name: "marques")]
-class Marque implements \JsonSerializable
+//#[ORM\Table(name: "telegram_accounts", schema: "users")]
+//#[ORM\Index(name: "subscriber_notification_idx", columns: ["subscriber_notification"], options: ["where" => "subscriber_notification = TRUE"])]
+//#[ORM\Index(name: "rename_notification_idx", columns: ["rename_notification"], options: ["where" => "rename_notification = TRUE"])]
+
+
+#[ORM\Entity(repositoryClass: ModelRepository::class)]
+#[ORM\Table(name: "models")]
+#[ORM\UniqueConstraint(name: 'uk_models', columns: ['nom', 'type_transport'])]
+class Model implements \JsonSerializable
 {
-    const ETAT_OUI = 1;
-    const ETAT_NON = 2;
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(length: 255)]
     private ?string $nom = null;
+
+    #[ORM\Column(length: 1)]
+    private ?string $typeTransport = null;
 
     #[ORM\Column]
     private ?int $etat = null;
 
     #[ORM\Column]
-    private ?int $ordre = 0;
+    private ?int $ordre = null;
 
-    #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Model::class)]
-    private Collection $models;
-
-    public function __construct()
-    {
-        $this->models = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'models')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Marque $marque = null;
 
     public function getId(): ?int
     {
@@ -52,6 +52,18 @@ class Marque implements \JsonSerializable
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getTypeTransport(): ?string
+    {
+        return $this->typeTransport;
+    }
+
+    public function setTypeTransport(string $typeTransport): self
+    {
+        $this->typeTransport = $typeTransport;
 
         return $this;
     }
@@ -80,11 +92,24 @@ class Marque implements \JsonSerializable
         return $this;
     }
 
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): self
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
             'nom' => $this->nom,
+            'typeTransport' => $this->typeTransport,
             'etat' => $this->etat,
             'ordre' => $this->ordre,
         ];
@@ -97,7 +122,7 @@ class Marque implements \JsonSerializable
         ]));
 
         $metadata->addConstraint(new UniqueEntity([
-            'fields' => 'nom'
+            'fields' => [ 'nom', 'type_transport' ]
         ]));
 
         $metadata->addPropertyConstraint('etat', new Assert\NotBlank([
@@ -108,35 +133,5 @@ class Marque implements \JsonSerializable
             'choices' => [1, 2],
             'message' => 'Choose a valid genre.',
         ]));
-    }
-
-    /**
-     * @return Collection<int, Model>
-     */
-    public function getModels(): Collection
-    {
-        return $this->models;
-    }
-
-    public function addModel(Model $model): self
-    {
-        if (!$this->models->contains($model)) {
-            $this->models->add($model);
-            $model->setMarque($this);
-        }
-
-        return $this;
-    }
-
-    public function removeModel(Model $model): self
-    {
-        if ($this->models->removeElement($model)) {
-            // set the owning side to null (unless already changed)
-            if ($model->getMarque() === $this) {
-                $model->setMarque(null);
-            }
-        }
-
-        return $this;
     }
 }
