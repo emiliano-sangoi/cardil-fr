@@ -1,0 +1,48 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block main_content %}
+
+    {% include('bonus_malus/_table.html.twig') %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        // $('table').bootstrapTable('mergeCells', {
+        //     index: 1,
+        //     field: 'name',
+        //     //colspan: 2,
+        //     rowspan: 4
+        // })
+
+        function montantFormatter(row, index) {
+            if (row < 0) {
+                return '<span class="text-success font-weight-bold"> ' + row + '&nbsp;&euro;</span>';
+            }else if (row > 0) {
+                return '<span class="text-danger font-weight-bold">' + row + '&nbsp;&euro;</span>';
+            }
+        }
+
+        var url_show_base = "{{ path('app_bonus_malus_show', {'id': '-ID-'}) }}";
+        var url_edit_base = "{{ path('app_bonus_malus_edit', {'id': '-ID-'}) }}";
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a href="' + url_show_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                '<span class="mx-1"></span>',
+                '<a href="' + url_edit_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+            ].join('')
+        }
+
+        function headerStyle(column) {
+            return { 'classes': 'bg-secondary font-weight-bold text-white' };
+        }
+
+    </script>
+{% endblock %}
+

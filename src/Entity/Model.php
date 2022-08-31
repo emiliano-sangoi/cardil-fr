@@ -8,10 +8,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 
-//#[ORM\Table(name: "telegram_accounts", schema: "users")]
-//#[ORM\Index(name: "subscriber_notification_idx", columns: ["subscriber_notification"], options: ["where" => "subscriber_notification = TRUE"])]
-//#[ORM\Index(name: "rename_notification_idx", columns: ["rename_notification"], options: ["where" => "rename_notification = TRUE"])]
-
 
 #[ORM\Entity(repositoryClass: ModelRepository::class)]
 #[ORM\Table(name: "models")]

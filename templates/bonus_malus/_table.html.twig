@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12">
+
+        <div id="toolbar">
+            <a href="{{ path('app_bonus_malus_new') }}" class="btn btn-primary mb-3">
+                <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
+            </a>
+        </div>
+
+        <table
+            id="table"
+            class="table bg-white text-dark"
+            data-toggle="table"
+            data-search="true"
+            data-toolbar="#toolbar"
+            data-show-refresh="true"
+            data-show-columns="true"
+            data-sortable="true"
+            data-pagination="true"
+            data-header-style="headerStyle"
+            data-url="{{ path( 'app_bonus_malus_index_json' ) }}">
+            <thead>
+            <tr>
+                <th data-field="minCO2" data-sortable="true" >{{ 'Min. CO2 (g/Km)'| trans }}</th>
+                <th data-field="maxCO2" data-sortable="true">{{ 'Max. CO2 (g/Km)'| trans }}</th>
+                <th data-field="montant" data-sortable="true" data-formatter="montantFormatter">{{ 'Charge'| trans }}</th>
+                <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
