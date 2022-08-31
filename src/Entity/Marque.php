@@ -111,7 +111,7 @@ class Marque implements \JsonSerializable
         ]));
 
         $metadata->addPropertyConstraint('etat', new Assert\Choice([
-            'choices' => [1, 2],
+            'choices' => [self::ETAT_OUI, self::ETAT_NON],
             'message' => 'Choose a valid genre.',
         ]));
     }

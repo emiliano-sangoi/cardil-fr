@@ -23,7 +23,6 @@ class ModelsController extends AbstractController
     public function index(ModelRepository $modelRepository, TranslatorInterface $translator): Response
     {
         return $this->render('models/index.html.twig', [
-            'models' => $modelRepository->findAll(),
             'page_title' => $translator->trans('Models'),
             'active_section' => self::SIDEBAR_ID
         ]);
