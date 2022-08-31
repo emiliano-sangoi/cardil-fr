@@ -5,9 +5,12 @@
     <div class="row">
         <div class="col-12">
 
-            <div id="toolbar">
-                <a href="{{ path('app_marques_new') }}" class="btn btn-primary mb-3">
+            <div id="toolbar" class="mb-3">
+                <a href="{{ path('app_models_new') }}" class="btn btn-primary">
                     <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
+                </a>
+                <a href="{{ path('app_marques_index') }}" class="btn btn-outline-secondary">
+                    <i class="fa fa-arrow-left"></i>&nbsp; {{ "Back"|trans }}
                 </a>
             </div>
 
@@ -22,13 +25,13 @@
                 data-sortable="true"
                 data-pagination="true"
                 data-header-style="headerStyle"
-                data-url="{{ path('app_marques_index_json') }}">
+                data-url="{{ path('app_models_by_marque_index_json', { id: marque.id }) }}">
                 <thead>
                 <tr>
                     <th data-field="id" data-sortable="true">{{ 'Id'| trans }}</th>
                     <th data-field="nom" data-sortable="true">{{ 'Name'| trans }}</th>
+                    <th data-field="typeTransport" data-sortable="true">{{ 'Transport type'| trans }}</th>
                     <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">{{ 'Online'| trans }}</th>
-                    <th data-field="cantModels" data-sortable="true">{{ 'Models amount'| trans }}</th>
                     <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
                 </tr>
                 </thead>
@@ -50,9 +53,8 @@
             return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
         }
 
-        var url_show_base = "{{ path('app_marques_show', {'id': '-ID-'}) }}";
-        var url_edit_base = "{{ path('app_marques_edit', {'id': '-ID-'}) }}";
-        var url_models_base = "{{ path('app_models_by_marque_index', {'id': '-ID-'}) }}";
+        var url_show_base = "{{ path('app_models_show', {'id': '-ID-'}) }}";
+        var url_edit_base = "{{ path('app_models_edit', {'id': '-ID-'}) }}";
 
         function operateFormatter(value, row, index) {
             return [
@@ -60,10 +62,7 @@
                 + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
                 '<span class="mx-1"></span>',
                 '<a href="' + url_edit_base.replace('-ID-', row.id)
-                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>',
-                '<span class="mx-1"></span>',
-                '<a href="' + url_models_base.replace('-ID-', row.id)
-                + '" class="btn btn-sm btn-outline-info"><i class="fa fa-car"></i> ' + "{{ "Models"|trans  }}" + '</a>'
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
             ].join('')
         }
 

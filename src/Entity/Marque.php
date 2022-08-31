@@ -87,6 +87,7 @@ class Marque implements \JsonSerializable
             'nom' => $this->nom,
             'etat' => $this->etat,
             'ordre' => $this->ordre,
+            'cantModels' => $this->models->count()
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Marque;
 use App\Form\MarqueType;
 use App\Repository\MarqueRepository;
+use App\Repository\ModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +32,26 @@ class MarquesController extends AbstractController
     public function indexJson(MarqueRepository $marqueRepository): Response
     {
         return new JsonResponse($marqueRepository->findAll());
+    }
+
+    #[Route('/{id}/models', name: 'app_models_by_marque_index', methods: ['GET'])]
+    public function getModelsByMarque(Marque $marque, ModelRepository $modelRepository, TranslatorInterface $translator): Response
+    {
+
+        $titulo  = $marque->getNom() . ' - ' . $translator->trans('Models');
+
+        return $this->render('models/index.html.twig', [
+            'models' => $modelRepository->findBy(['marque' => $marque]),
+            'marque' => $marque,
+            'page_title' => $titulo,
+            'active_section' => self::SIDEBAR_ID
+        ]);
+    }
+
+    #[Route('/{id}/models/json', name: 'app_models_by_marque_index_json', methods: ['GET'])]
+    public function getModelsByMarqueJson(Marque $marque, ModelRepository $modelRepository): Response
+    {
+        return new JsonResponse($modelRepository->findBy(['marque' => $marque]));
     }
 
     #[Route('/new', name: 'app_marques_new', methods: ['GET', 'POST'])]
