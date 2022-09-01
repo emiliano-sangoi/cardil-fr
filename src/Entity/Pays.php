@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\PaysRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PaysRepository::class)]
-class Pays
+class Pays implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,6 +23,29 @@ class Pays
 
     #[ORM\Column]
     private ?int $ordre = null;
+
+    #[ORM\OneToMany(mappedBy: 'pays', targetEntity: Fournisseur::class)]
+    private Collection $fournisseurs;
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'abrev' => $this->abrev,
+            'ordre' => $this->ordre,
+        ];
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
+
+    public function __construct()
+    {
+        $this->fournisseurs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +84,36 @@ class Pays
     public function setOrdre(int $ordre): self
     {
         $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fournisseur>
+     */
+    public function getFournisseurs(): Collection
+    {
+        return $this->fournisseurs;
+    }
+
+    public function addFournisseur(Fournisseur $fournisseur): self
+    {
+        if (!$this->fournisseurs->contains($fournisseur)) {
+            $this->fournisseurs->add($fournisseur);
+            $fournisseur->setPays($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFournisseur(Fournisseur $fournisseur): self
+    {
+        if ($this->fournisseurs->removeElement($fournisseur)) {
+            // set the owning side to null (unless already changed)
+            if ($fournisseur->getPays() === $this) {
+                $fournisseur->setPays(null);
+            }
+        }
 
         return $this;
     }

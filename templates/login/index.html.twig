@@ -23,11 +23,14 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-3 mb-lg-5 font-weight-bold">
-                                            Administration
+                                        <h1 class="text-gray-900 mb-2 font-weight-bold">
+                                            CARDIL.FR
                                         </h1>
+                                        <h2 class="h4 mb-3 mb-lg-5 text-muted">
+                                            Administration
+                                        </h2>
                                     </div>
-                                    <form class="user" action="{{ path('app_login') }}" method="post">
+                                    <form class="user" class="" action="{{ path('app_login') }}" method="post">
                                         {% if error %}
                                             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                         {% endif %}
