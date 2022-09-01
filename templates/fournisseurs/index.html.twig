@@ -1,61 +1,108 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}Fournisseur index{% endblock %}
+{% block main_content %}
 
-{% block body %}
-    <h1>Fournisseur index</h1>
+    <div class="row">
+        <div class="col-12">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomCommercial</th>
-                <th>RaisonSociale</th>
-                <th>Adresse1</th>
-                <th>Adresse2</th>
-                <th>CodePostale</th>
-                <th>Ville</th>
-                <th>Tel</th>
-                <th>Fax</th>
-                <th>Email</th>
-                <th>Siret</th>
-                <th>TvaIntraComm</th>
-                <th>Tva</th>
-                <th>Etat</th>
-                <th>EmplacementFile</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for fournisseur in fournisseurs %}
-            <tr>
-                <td>{{ fournisseur.id }}</td>
-                <td>{{ fournisseur.nomCommercial }}</td>
-                <td>{{ fournisseur.raisonSociale }}</td>
-                <td>{{ fournisseur.adresse1 }}</td>
-                <td>{{ fournisseur.adresse2 }}</td>
-                <td>{{ fournisseur.codePostale }}</td>
-                <td>{{ fournisseur.ville }}</td>
-                <td>{{ fournisseur.tel }}</td>
-                <td>{{ fournisseur.fax }}</td>
-                <td>{{ fournisseur.email }}</td>
-                <td>{{ fournisseur.siret }}</td>
-                <td>{{ fournisseur.tvaIntraComm }}</td>
-                <td>{{ fournisseur.tva }}</td>
-                <td>{{ fournisseur.etat }}</td>
-                <td>{{ fournisseur.emplacementFile }}</td>
-                <td>
-                    <a href="{{ path('app_fournisseurs_show', {'id': fournisseur.id}) }}">show</a>
-                    <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="16">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div id="toolbar" class="mb-3">
+                <a href="{{ path('app_fournisseurs_new') }}" class="btn btn-primary">
+                    <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
+                </a>
+            </div>
 
-    <a href="{{ path('app_fournisseurs_new') }}">Create new</a>
+            <table
+                id="table"
+                class="table bg-white text-dark"
+                data-toggle="table"
+                data-search="true"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-sortable="true"
+                data-pagination="true"
+                data-detail-view="true"
+                data-detail-formatter="detailFormatter"
+                data-detail-view-icon="true"
+                data-detail-view-by-click="true"
+                data-header-style="headerStyle"
+                data-url="{{ path('app_fournisseurs_index_json') }}">
+                <thead>
+                <tr>
+{#                    <th data-field="id" data-sortable="true">{{ 'Id'| trans }}</th>#}
+                    <th data-field="nomCommercial" data-sortable="true">{{ 'Commercial name'| trans }}</th>
+                    <th data-field="raisonSociale" data-sortable="true">{{ 'Raison sociale'| trans }}</th>
+{#                    <th data-field="adresse1" data-sortable="true">{{ 'Adress'| trans }} 1</th>#}
+{#                    <th data-field="codePostale" data-sortable="true">{{ 'Zip code'| trans }}</th>#}
+                    <th data-field="pays.nom" data-sortable="true">{{ 'Country'| trans }}</th>
+                    <th data-field="tel" data-sortable="true">{{ 'Phone'| trans }}</th>
+                    <th data-field="email" data-sortable="true">{{ 'Email'| trans }}</th>
+                    <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">{{ 'Online'| trans }}</th>
+                    <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
+                </tr>
+
+{#                <td>{{ fournisseur.adresse1 }}</td>#}
+{#                <td>{{ fournisseur.adresse2 }}</td>#}
+{#                <td>{{ fournisseur.codePostale }}</td>#}
+{#                <td>{{ fournisseur.ville }}</td>#}
+{#                <td>{{ fournisseur.tel }}</td>#}
+{#                <td>{{ fournisseur.fax }}</td>#}
+{#                <td>{{ fournisseur.email }}</td>#}
+{#                <td>{{ fournisseur.siret }}</td>#}
+{#                <td>{{ fournisseur.tvaIntraComm }}</td>#}
+{#                <td>{{ fournisseur.tva }}</td>#}
+{#                <td>{{ fournisseur.etat }}</td>#}
+{#                <td>{{ fournisseur.emplacementFile }}</td>#}
+
+                </thead>
+            </table>
+        </div>
+    </div>
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        function detailFormatter(index, row) {
+            var html = []
+            $.each(row, function (key, value) {
+                if(typeof value == 'object'){
+                    value = value.nom;
+                }
+                html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+            })
+            return html.join('')
+        }
+
+        function etatFormatter(row, index) {
+            if (row == 1) {
+                return '<span class="text-success font-weight-bold"> ' + "{{ "Yes"|trans  }}" + '</span>';
+            }
+            return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
+        }
+
+        var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}";
+        var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}";
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a href="' + url_show_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                '<span class="mx-1"></span>',
+                '<a href="' + url_edit_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+            ].join('')
+        }
+
+        function headerStyle(column) {
+            return { 'classes': 'bg-secondary font-weight-bold text-white' };
+        }
+
+    </script>
+{% endblock %}
+
+
+

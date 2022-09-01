@@ -20,7 +20,7 @@ class ModelsController extends AbstractController
     const SIDEBAR_ID = 2;
 
     #[Route('/models', name: 'app_models_index', methods: ['GET'])]
-    public function index(ModelRepository $modelRepository, TranslatorInterface $translator): Response
+    public function index(TranslatorInterface $translator): Response
     {
         return $this->render('models/index.html.twig', [
             'page_title' => $translator->trans('Models'),

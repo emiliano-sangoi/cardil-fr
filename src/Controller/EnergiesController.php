@@ -17,13 +17,10 @@ class EnergiesController extends AbstractController
 {
     const SIDEBAR_ID = 2;
 
-
-
     #[Route('/', name: 'app_energies_index', methods: ['GET'])]
-    public function index(EnergieRepository $energieRepository, TranslatorInterface $translator): Response
+    public function index(TranslatorInterface $translator): Response
     {
         return $this->render('energies/index.html.twig', [
-            'energies' => $energieRepository->findAll(),
             'page_title' => $translator->trans('Energy'),
             'active_section' => self::SIDEBAR_ID
         ]);
@@ -36,7 +33,7 @@ class EnergiesController extends AbstractController
     }
 
     #[Route('/new', name: 'app_energies_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EnergieRepository $energieRepository): Response
+    public function new(Request $request, EnergieRepository $energieRepository, TranslatorInterface $translator): Response
     {
         $energie = new Energie();
         $form = $this->createForm(EnergieType::class, $energie);
