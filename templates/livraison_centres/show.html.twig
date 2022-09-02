@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LivraisonCentre{% endblock %}
+
+{% block body %}
+    <h1>LivraisonCentre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livraison_centre.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ livraison_centre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ livraison_centre.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ livraison_centre.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Altitude</th>
+                <td>{{ livraison_centre.altitude }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ livraison_centre.etat }}</td>
+            </tr>
+            <tr>
+                <th>Cout</th>
+                <td>{{ livraison_centre.cout }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livraison_centres_index') }}">back to list</a>
+
+    <a href="{{ path('app_livraison_centres_edit', {'id': livraison_centre.id}) }}">edit</a>
+
+    {{ include('livraison_centres/_delete_form.html.twig') }}
+{% endblock %}

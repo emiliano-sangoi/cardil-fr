@@ -31,4 +31,4 @@ import './sb-admin2/js/sb-admin-2';
 
 require('bootstrap-table');
 require('leaflet');
-
+//require('./maps/map');

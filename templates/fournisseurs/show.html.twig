@@ -9,7 +9,7 @@
 
     <style>
         #map {
-            height: 100%;
+            height: 75%;
         }
     </style>
 
@@ -40,10 +40,15 @@
         </div>
         <div class="col-12 col-md-4 col-lg-6">
             <div class="h-100">
-                <label class="font-weight-bold text-dark">
-                    {{ "form.fournisseur.labels.distributionCenters" | trans }}
-                </label>
-                <div id="map"></div>
+{#                <div class="h-100">#}
+                    <label class="font-weight-bold text-dark">
+                        {{ "form.fournisseur.labels.distributionCenters" | trans }}
+                    </label>
+                    <div id="map"></div>
+{#                </div>#}
+{#                <div class="">#}
+                    {% include 'livraison_centres/_table.html.twig' %}
+{#                </div>#}
             </div>
         </div>
     </div>
@@ -54,17 +59,68 @@
  {% block javascripts %}
      {{ parent() }}
 
+{#     <script src="{{ asset('build/maps.js') }}"></script>#}
+
      <script>
+
+         function initMap(id, center, currentZoom, maxZoom = 19) {
+
+             var map = L.map(id).setView(center, currentZoom);
+             var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                 maxZoom: maxZoom,
+                 //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+             }).addTo(map);
+
+             return map;
+         };
+
          $(document).ready(function (e) {
 
-             var map = L.map('map').setView([51.505, -0.09], 13);
-             var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                 maxZoom: 19,
-                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-             }).addTo(map);
+             var map = initMap('map', [41.909986, 12.3959157], 8, 19);
+
+             var myIcon = L.icon({
+                 iconUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png",
+                // iconSize: [38, 95],
+                iconAnchor: [22, 94],
+                 popupAnchor: [-3, -76],
+                // shadowUrl: 'my-icon-shadow.png',
+               //  shadowSize: [68, 95],
+                 shadowAnchor: [22, 94]
+             });
+
+                var markerOptions = {
+                  icon: myIcon
+                };
+
+                 var marker = L.marker([41.909986, 12.3959157], markerOptions).addTo(map)
+                     .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+             var marker = L.marker([42.416055, 12.848037], markerOptions).addTo(map)
+                 .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+             var marker = L.marker([41.6345472,13.3026606], markerOptions).addTo(map)
+                 .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+
+
+
 
 
          });
+
+
+         var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}";
+         var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}";
+
+         function operateFormatter(value, row, index) {
+             return [
+                 "<a href='"+ url_show_base.replace('-ID-', row.id)
+                 + "' class='btn btn-sm btn-outline-secondary'><i class='fa fa-eye'></i></a>",
+                 '<span class="mx-1"></span>',
+                 '<a href="' + url_edit_base.replace('-ID-', row.id)
+                 + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i></a>'
+             ].join('')
+         }
 
      </script>
  {% endblock %}

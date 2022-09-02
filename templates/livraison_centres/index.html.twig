@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LivraisonCentre index{% endblock %}
+
+{% block body %}
+    <h1>LivraisonCentre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Altitude</th>
+                <th>Etat</th>
+                <th>Cout</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livraison_centre in livraison_centres %}
+            <tr>
+                <td>{{ livraison_centre.id }}</td>
+                <td>{{ livraison_centre.nom }}</td>
+                <td>{{ livraison_centre.latitude }}</td>
+                <td>{{ livraison_centre.longitude }}</td>
+                <td>{{ livraison_centre.altitude }}</td>
+                <td>{{ livraison_centre.etat }}</td>
+                <td>{{ livraison_centre.cout }}</td>
+                <td>
+                    <a href="{{ path('app_livraison_centres_show', {'id': livraison_centre.id}) }}">show</a>
+                    <a href="{{ path('app_livraison_centres_edit', {'id': livraison_centre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livraison_centres_new') }}">Create new</a>
+{% endblock %}

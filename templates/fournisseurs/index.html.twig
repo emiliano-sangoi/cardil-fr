@@ -66,24 +66,6 @@
 
     <script>
 
-        function detailFormatter(index, row) {
-            var html = []
-            $.each(row, function (key, value) {
-                if(typeof value == 'object'){
-                    value = value.nom;
-                }
-                html.push('<p><b>' + key + ':</b> ' + value + '</p>')
-            })
-            return html.join('')
-        }
-
-        function etatFormatter(row, index) {
-            if (row == 1) {
-                return '<span class="text-success font-weight-bold"> ' + "{{ "Yes"|trans  }}" + '</span>';
-            }
-            return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
-        }
-
         var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}";
         var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}";
 
@@ -95,10 +77,6 @@
                 '<a href="' + url_edit_base.replace('-ID-', row.id)
                 + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
             ].join('')
-        }
-
-        function headerStyle(column) {
-            return { 'classes': 'bg-secondary font-weight-bold text-white' };
         }
 
     </script>

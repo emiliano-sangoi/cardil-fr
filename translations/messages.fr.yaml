@@ -52,3 +52,8 @@ form:
       pays: Pays
       distributionCenters: Centres de livraison
 
+  livraison_centre:
+    labels:
+      name: Nom
+      cost: Cout
+      state: Etat

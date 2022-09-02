@@ -31,7 +31,7 @@ class LivraisonCentre implements \JsonSerializable
     #[ORM\Column]
     private ?float $longitude = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $altitude = null;
 
     #[ORM\Column]
