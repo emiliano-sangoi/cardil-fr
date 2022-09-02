@@ -33,6 +33,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 // Bootstrap tables
 @import "~bootstrap-table/src/bootstrap-table";
+@import "~leaflet/dist/leaflet.css";
 
 table th.detail{
     background-color: $secondary;

@@ -1,24 +1,73 @@
 {% extends 'base-admin.html.twig' %}
 
+{% block stylesheets %}
+    {#    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" #}
+    {#          integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" #}
+    {#          crossorigin=""/> #}
+
+    {{ parent() }}
+
+    <style>
+        #map {
+            height: 100%;
+        }
+    </style>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    {#    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" #}
+    {#            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" #}
+    {#            crossorigin=""></script> #}
+{% endblock %}
+
 {% block main_content %}
+    <div class="row mb-4 mb-lg-5">
+        <div class="col-12 col-lg-6">
+            <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}" class="btn btn-primary">
+                <i class="fa fa-pencil"></i>&nbsp;{{ "Edit"|trans }}
+            </a>
+            <a href="{{ path('app_fournisseurs_index') }}" class="btn btn-outline-secondary">
+                <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+            </a>
+        </div>
+        <div class="col-12 col-lg-6 text-right">
+            {{ include('fournisseurs/_delete_form.html.twig') }}
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6">
-
             {% include 'fournisseurs/_form.html.twig' %}
-
-            <div class="row mt-4 mt-lg-5">
-                <div class="col-12 col-lg-6">
-                    <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}" class="btn btn-primary">
-                        <i class="fa fa-pencil"></i>&nbsp;{{ "Edit"|trans }}
-                    </a>
-                    <a href="{{ path('app_fournisseurs_index') }}" class="btn btn-outline-secondary">
-                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
-                    </a>
-                </div>
-                <div class="col-12 col-lg-6 text-lg-right">
-                    {{ include('fournisseurs/_delete_form.html.twig') }}
-                </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-6">
+            <div class="h-100">
+                <label class="font-weight-bold text-dark">
+                    {{ "form.fournisseur.labels.distributionCenters" | trans }}
+                </label>
+                <div id="map"></div>
             </div>
         </div>
     </div>
+
+
 {% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+
+     <script>
+         $(document).ready(function (e) {
+
+             var map = L.map('map').setView([51.505, -0.09], 13);
+             var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                 maxZoom: 19,
+                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+             }).addTo(map);
+
+
+         });
+
+     </script>
+ {% endblock %}
+
+
+

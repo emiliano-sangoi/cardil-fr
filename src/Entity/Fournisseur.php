@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\FournisseurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -65,6 +68,17 @@ class Fournisseur implements \JsonSerializable
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $emplacementFile = null;
+
+    #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: LivraisonCentre::class)]
+    private Collection $livraisonCenters;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $supressionDate = null;
+
+    public function __construct()
+    {
+        $this->livraisonCenters = new ArrayCollection();
+    }
 
     public function jsonSerialize(): mixed
     {
@@ -296,6 +310,48 @@ class Fournisseur implements \JsonSerializable
     public function setEmplacementFile(?string $emplacementFile): self
     {
         $this->emplacementFile = $emplacementFile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LivraisonCentre>
+     */
+    public function getLivraisonCenters(): Collection
+    {
+        return $this->livraisonCenters;
+    }
+
+    public function addLivraisonCenter(LivraisonCentre $livraisonCenter): self
+    {
+        if (!$this->livraisonCenters->contains($livraisonCenter)) {
+            $this->livraisonCenters->add($livraisonCenter);
+            $livraisonCenter->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivraisonCenter(LivraisonCentre $livraisonCenter): self
+    {
+        if ($this->livraisonCenters->removeElement($livraisonCenter)) {
+            // set the owning side to null (unless already changed)
+            if ($livraisonCenter->getFournisseur() === $this) {
+                $livraisonCenter->setFournisseur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSupressionDate(): ?\DateTimeInterface
+    {
+        return $this->supressionDate;
+    }
+
+    public function setSupressionDate(?\DateTimeInterface $supressionDate): self
+    {
+        $this->supressionDate = $supressionDate;
 
         return $this;
     }
