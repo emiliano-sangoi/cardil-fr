@@ -1,5 +1,64 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+<div class="row mb-3">
+    <div class="col-12 col-lg-6">
+        {{ form_row(form.nomCommercial) }}
+    </div>
+    <div class="col-12 col-lg-6">
+        {{ form_row(form.raisonSociale) }}
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 col-lg-6">
+        {{ form_row(form.adresse1) }}
+    </div>
+    <div class="col-12 col-lg-6">
+        {{ form_row(form.adresse2) }}
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12 col-lg-3">
+        {{ form_row(form.codePostale) }}
+    </div>
+    <div class="col-12 col-lg-3">
+        {{ form_row(form.ville) }}
+    </div>
+    <div class="col">
+        {{ form_row(form.pays) }}
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12 col-lg-3">
+        {{ form_row(form.tel) }}
+    </div>
+    <div class="col-12 col-lg-3">
+        {{ form_row(form.fax) }}
+    </div>
+    <div class="col">
+        {{ form_row(form.email) }}
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        {{ form_row(form.siret) }}
+    </div>
+    <div class="col">
+        {{ form_row(form.tvaIntraComm) }}
+    </div>
+    <div class="col">
+        {{ form_row(form.tva) }}
+    </div>
+</div>
+
+<div class="form-row mb-3">
+    <div class="col-12 col-md-4">
+        {{ form_row(form.etat) }}
+    </div>
+</div>
+
 {{ form_end(form) }}

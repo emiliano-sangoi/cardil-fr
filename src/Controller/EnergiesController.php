@@ -45,31 +45,35 @@ class EnergiesController extends AbstractController
             return $this->redirectToRoute('app_energies_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $titulo = $translator->trans('Energy') . ' - ' . $translator->trans('Add');
+
         return $this->renderForm('energies/new.html.twig', [
             'energie' => $energie,
             'form' => $form,
             'active_section' => self::SIDEBAR_ID,
-            'page_title' => 'Energies',
+            'page_title' => $titulo,
         ]);
     }
 
     #[Route('/{id}', name: 'app_energies_show', methods: ['GET'])]
-    public function show(Energie $energie): Response
+    public function show(Energie $energie, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(EnergieType::class, $energie, [
             'disabled' => true
         ]);
 
+        $titulo = $translator->trans('Energy') . ' - ' . $translator->trans('Add');
+
         return $this->render('energies/show.html.twig', [
             'energie' => $energie,
-            'page_title' => $energie->getNom(),
+            'page_title' => $titulo,
             'active_section' => self::SIDEBAR_ID,
             'form' => $form->createView()
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_energies_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Energie $energie, EnergieRepository $energieRepository): Response
+    public function edit(Request $request, Energie $energie, EnergieRepository $energieRepository, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(EnergieType::class, $energie);
         $form->handleRequest($request);
@@ -80,9 +84,11 @@ class EnergiesController extends AbstractController
             return $this->redirectToRoute('app_energies_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $titulo = $translator->trans('Energy') . ' - ' . $translator->trans('Edit');
+
         return $this->renderForm('energies/edit.html.twig', [
             'energie' => $energie,
-            'page_title' => 'Edition de l\'énergie: ' . $energie->getNom(),
+            'page_title' => $titulo,
             'active_section' => self::SIDEBAR_ID,
             'form' => $form,
         ]);

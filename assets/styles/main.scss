@@ -38,3 +38,17 @@ table th.detail{
     background-color: $secondary;
 }
 
+.row, .form-row{
+    .form-group {
+        & > label{
+            font-weight: bold;
+            color: $dark;
+        }
+
+        & > legend{
+            font-weight: bold;
+            color: $dark;
+        }
+    }
+}
+

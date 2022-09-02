@@ -1,0 +1,16 @@
+form:
+  fournisseur:
+    labels:
+      nomCommercial: Commertial name
+      raisonSociale: Raison sociale
+      adresse1: 'Adress #1'
+      adresse2: 'Adress #2'
+      codePostale: ZIP code
+      ville: Ville
+      tel: Phone
+      fax: Fax
+      email: Email
+      siret: Siret
+      tvaIntraComm: TVA Intra Comm.
+      tva: TVA
+      pays: Country

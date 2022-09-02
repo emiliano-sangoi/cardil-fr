@@ -14,30 +14,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ModelType extends AbstractType
 {
+
+    use FormHelperTrait;
+
     private TranslatorInterface $translator;
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->translator = $options['translator'];
 
-        $builder
-            ->add('nom', TextType::class, [
-                'label' => $this->translator->trans('Name'),
-                'label_attr' => [ 'class' => 'font-weight-bold']
-                // 'help' => 'This field must be unique',
-            ]);
+        $this->addNomField($builder, $options);
 
-        $builder
-            ->add('etat', ChoiceType::class, [
-                'label' => $this->translator->trans('Online'),
-                'label_attr' => [ 'class' => 'font-weight-bold'],
-                'choices' => [
-                    'Oui' => Model::ETAT_OUI,
-                    'Non' => Model::ETAT_NON,
-                ],
-                'expanded' => true,
-                'choice_attr' => ['class' => 'mx-5'],
-            ]);
+        $this->addEtatField($builder, $options);
 
 
         $builder

@@ -57,8 +57,17 @@ class FournisseursController extends AbstractController
     #[Route('/{id}', name: 'app_fournisseurs_show', methods: ['GET'])]
     public function show(Fournisseur $fournisseur, TranslatorInterface $translator): Response
     {
+        $form = $this->createForm(FournisseurType::class, $fournisseur, [
+            'disabled' => true
+        ]);
+
+        $titulo = $translator->trans('Providers') . ' - ' . $translator->trans('Show');
+
         return $this->render('fournisseurs/show.html.twig', [
             'fournisseur' => $fournisseur,
+            'page_title' => $titulo,
+            'active_section' => self::SIDEBAR_ID,
+            'form' => $form->createView()
         ]);
     }
 
@@ -74,8 +83,12 @@ class FournisseursController extends AbstractController
             return $this->redirectToRoute('app_fournisseurs_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $titulo = $translator->trans('Providers') . ' - ' . $translator->trans('Edit');
+
         return $this->renderForm('fournisseurs/edit.html.twig', [
             'fournisseur' => $fournisseur,
+            'page_title' => $titulo,
+            'active_section' => self::SIDEBAR_ID,
             'form' => $form,
         ]);
     }

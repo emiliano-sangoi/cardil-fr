@@ -33,4 +33,20 @@ Providers: Fournisseurs
 Commertial name: Nom Commercial
 Upload: Envoyer
 Country: Pays
-Phone: Téléphone
+
+form:
+  fournisseur:
+    labels:
+      nomCommercial: Nom Commercial
+      raisonSociale: Raison sociale
+      adresse1: 'Adresse #1'
+      adresse2: 'Adresse #2'
+      codePostale: Code postale
+      ville: Ville
+      tel: Téléphone
+      fax: Fax
+      email: Email
+      siret: Siret
+      tvaIntraComm: TVA Intra Comm.
+      tva: TVA
+      pays: Pays

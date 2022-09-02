@@ -1,13 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}Edit Fournisseur{% endblock %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6">
 
-{% block body %}
-    <h1>Edit Fournisseur</h1>
+            {% include 'fournisseurs/_form.html.twig' %}
 
-    {{ include('fournisseurs/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_fournisseurs_index') }}">back to list</a>
-
-    {{ include('fournisseurs/_delete_form.html.twig') }}
+            <div class="row mt-4 mt-lg-5">
+                <div class="col-12 col-lg-6">
+                    <button class="btn btn-primary" type="submit" form="{{ form.vars.attr.id }}">
+                        <i class="fa fa-check"></i>&nbsp;{{ "Save changes"|trans }}
+                    </button>
+                    <a href="{{ path('app_fournisseurs_index') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                    </a>
+                </div>
+                <div class="col-12 col-lg-6 text-lg-right">
+                    {{ include('fournisseurs/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

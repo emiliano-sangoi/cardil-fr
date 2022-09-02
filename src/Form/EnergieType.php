@@ -11,26 +11,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EnergieType extends AbstractType
 {
+    use FormHelperTrait;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Nomme',
-                'label_attr' => [ 'class' => 'font-weight-bold']
-               // 'help' => 'This field must be unique',
-            ]);
 
-        $builder
-            ->add('etat', ChoiceType::class, [
-                'label' => 'En ligne?',
-                'label_attr' => [ 'class' => 'font-weight-bold'],
-                'choices' => [
-                    'Oui' => Energie::ETAT_OUI,
-                    'Non' => Energie::ETAT_NON,
-                ],
-               'expanded' => true,
-               'choice_attr' => ['class' => 'mx-5'],
-            ]);
+        $this->addNomField($builder, $options);
+        $this->addEtatField($builder, $options);
 
     }
 

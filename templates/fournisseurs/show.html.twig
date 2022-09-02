@@ -1,78 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}Fournisseur{% endblock %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6">
 
-{% block body %}
-    <h1>Fournisseur</h1>
+            {% include 'fournisseurs/_form.html.twig' %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ fournisseur.id }}</td>
-            </tr>
-            <tr>
-                <th>NomCommercial</th>
-                <td>{{ fournisseur.nomCommercial }}</td>
-            </tr>
-            <tr>
-                <th>RaisonSociale</th>
-                <td>{{ fournisseur.raisonSociale }}</td>
-            </tr>
-            <tr>
-                <th>Adresse1</th>
-                <td>{{ fournisseur.adresse1 }}</td>
-            </tr>
-            <tr>
-                <th>Adresse2</th>
-                <td>{{ fournisseur.adresse2 }}</td>
-            </tr>
-            <tr>
-                <th>CodePostale</th>
-                <td>{{ fournisseur.codePostale }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ fournisseur.ville }}</td>
-            </tr>
-            <tr>
-                <th>Tel</th>
-                <td>{{ fournisseur.tel }}</td>
-            </tr>
-            <tr>
-                <th>Fax</th>
-                <td>{{ fournisseur.fax }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ fournisseur.email }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ fournisseur.siret }}</td>
-            </tr>
-            <tr>
-                <th>TvaIntraComm</th>
-                <td>{{ fournisseur.tvaIntraComm }}</td>
-            </tr>
-            <tr>
-                <th>Tva</th>
-                <td>{{ fournisseur.tva }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ fournisseur.etat }}</td>
-            </tr>
-            <tr>
-                <th>EmplacementFile</th>
-                <td>{{ fournisseur.emplacementFile }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_fournisseurs_index') }}">back to list</a>
-
-    <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}">edit</a>
-
-    {{ include('fournisseurs/_delete_form.html.twig') }}
+            <div class="row mt-4 mt-lg-5">
+                <div class="col-12 col-lg-6">
+                    <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}" class="btn btn-primary">
+                        <i class="fa fa-pencil"></i>&nbsp;{{ "Edit"|trans }}
+                    </a>
+                    <a href="{{ path('app_fournisseurs_index') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                    </a>
+                </div>
+                <div class="col-12 col-lg-6 text-lg-right">
+                    {{ include('fournisseurs/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
