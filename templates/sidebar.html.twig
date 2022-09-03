@@ -12,10 +12,10 @@
 
 
 
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-gray-800 sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-car"></i>
         </div>
@@ -29,62 +29,279 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ active_section == 1 ? 'active' : '' }}">
-        <a class="nav-link" href="{{ path('app_dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+        <a class="nav-link" href="{{ path('app_dashboard') }}" title="{{ "sidebar.home_msg" | trans }}">
+            <i class="fas fa-fw fa-home d-inline-block"></i>
+            <span>{{ "sidebar.home" | trans | upper }}</span>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.home_msg" | trans }}</div>#}
+        </a>
     </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 2 ? 'active' : '' }}">
+        <a class="nav-link" href="#" title="{{ "sidebar.suscriptions_msg" | trans }}">
+            <i class="fas fa-fw fa-gifts d-inline-block"></i>
+            <span>{{ "sidebar.suscriptions" | trans | upper }}</span>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.suscriptions_msg" | trans }}</div>#}
+        </a>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 3 ? 'active' : '' }}">
+        <a class="nav-link" href="#" title="{{ "sidebar.suscriptions_per_client_msg" | trans }}">
+            <i class="fas fa-fw fa-gift d-inline-block"></i>
+            <span>{{ "sidebar.suscriptions_per_client" | trans | upper }}</span>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.suscriptions_per_client_msg" | trans }}</div>#}
+        </a>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 4 ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseMarques" title="{{ "sidebar.brands_msg" | trans }}">
+            <i class="fas fa-fw fa-car d-inline-block"></i>
+            <span>{{ "sidebar.brands" | trans | upper }}</span>
+            <i class="fas fa-angle-down position-absolute" style="right: 1.1rem; top: 40%"></i>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">#}
+{#                {{ "sidebar.brands_msg" | trans }}#}
+{#            </div>#}
+        </a>
+
+        <div id="collapseMarques" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a class="collapse-item disabled" href="{{ path('app_marques_index') }}">
+                    <i class="fas fa-industry"></i>&nbsp;Marques & Modéles</a>
+                <a class="collapse-item" href="{{ path('app_energies_index') }}">
+                    <i class="fas fa-gas-pump"></i>&nbsp;Energies
+                </a>
+                <a class="collapse-item disabled" href="{{ path('app_portes_index') }}">
+                    <i class="fas fa-door-open"></i>&nbsp;Portes
+                </a>
+                <a class="collapse-item disabled text-muted" href="cards.html">Boites de vitesses</a>
+                <a class="collapse-item disabled text-muted" href="cards.html">Type carrosserie</a>
+                <a class="collapse-item disabled text-muted" href="cards.html">Catégories d'options</a>
+            </div>
+        </div>
+
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 5 ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseConf" title="{{ "sidebar.conf_msg" | trans }}">
+            <i class="fas fa-fw fa-gears d-inline-block"></i>
+            <span>{{ "sidebar.conf" | trans | upper }}</span>
+            <i class="fas fa-angle-down position-absolute" style="right: 1.1rem; top: 40%"></i>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.conf_msg" | trans }}</div>#}
+        </a>
+
+        <div id="collapseConf" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-tools"></i>
+                    &nbsp;{{ "sidebar.usine" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-dolly"></i>&nbsp;
+                    {{ "sidebar.stock" | trans | upper }}
+                </a>
+            </div>
+        </div>
+
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 6 ? 'active' : '' }}">
+        <a class="nav-link" href="#" title="{{ "sidebar.transport_msg" | trans }}">
+            <i class="fas fa-fw fa-truck-moving d-inline-block"></i>
+            <span>{{ "sidebar.transport" | trans | upper }}</span>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.transport_msg" | trans }}</div>#}
+        </a>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 7 ? 'active' : '' }}">
+        <a class="nav-link" href="#" title="{{ "sidebar.robots_msg" | trans }}">
+            <i class="fas fa-fw fa-robot d-inline-block"></i>
+            <span>{{ "sidebar.robots" | trans | upper }}</span>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.robots_msg" | trans }}</div>#}
+        </a>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 8 ? 'active' : '' }}">
+        <a class="nav-link" href="{{ path('app_fournisseurs_index') }}" title="{{ "sidebar.providers_msg" | trans }}">
+            <i class="fas fa-fw fa-address-card d-inline-block"></i>
+            <span>{{ "sidebar.providers" | trans | upper }}</span>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.providers_msg" | trans }}</div>#}
+        </a>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 9 ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseGeo" title="{{ "sidebar.geo_msg" | trans }}">
+            <i class="fas fa-fw fa-globe d-inline-block"></i>
+            <span>{{ "sidebar.geo" | trans | upper }}</span>
+            <i class="fas fa-angle-down position-absolute" style="right: 1.1rem; top: 40%"></i>
+{#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.geo_msg" | trans }}</div>#}
+        </a>
+
+        <div id="collapseGeo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a class="collapse-item text-muted" href="#">
+                    <i class="fas fa-globe-europe"></i>
+                    &nbsp;{{ "sidebar.country" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-map"></i>&nbsp;
+                    {{ "sidebar.departments" | trans | upper }}
+                </a>
+            </div>
+        </div>
+
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 10 ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSIV" title="{{ "sidebar.siv.msg" | trans }}">
+            <i class="fas fa-fw fa-money-bill d-inline-block"></i>
+            <span>{{ "sidebar.siv.siv" | trans | upper }}</span>
+            <i class="fas fa-angle-down position-absolute" style="right: 1.1rem; top: 40%"></i>
+            {#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.siv_msg" | trans }}</div>#}
+        </a>
+
+        <div id="collapseSIV" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a class="collapse-item disabled  text-muted" href="#">
+                    <i class="fas fa-clipboard"></i>&nbsp;{{ "sidebar.siv.siv" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-euro-sign"></i>&nbsp;{{ "sidebar.siv.fixed_costs" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-money-bill"></i>&nbsp;{{ "sidebar.siv.taxes" | trans | upper }}
+                </a>
+                <a class="collapse-item" href="{{ path('app_bonus_malus_index') }}">
+                    <i class="fas fa-map"></i>&nbsp;{{ "sidebar.siv.bonus_malus" | trans | upper }}
+                </a>
+            </div>
+        </div>
+
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 11 ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseFin" title="{{ "sidebar.finnantial.msg" | trans }}">
+            <i class="fas fa-fw fa-dollar-sign d-inline-block"></i>
+            <span>{{ "sidebar.finnantial.label" | trans | upper }}</span>
+            <i class="fas fa-angle-down position-absolute" style="right: 1.1rem; top: 40%"></i>
+            {#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.siv_msg" | trans }}</div>#}
+        </a>
+
+        <div id="collapseFin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-dollar-sign"></i>&nbsp;{{ "sidebar.finnantial.label" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-info-circle"></i>&nbsp;{{ "sidebar.finnantial.credit_info" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-info-circle"></i>&nbsp;{{ "sidebar.finnantial.loa_info" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-info-circle"></i>&nbsp;{{ "sidebar.finnantial.lld_info" | trans | upper }}
+                </a>
+            </div>
+        </div>
+
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item {{ active_section == 12 ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseClients" title="{{ "sidebar.clients.msg" | trans }}">
+            <i class="fas fa-fw fa-people-group d-inline-block"></i>
+            <span>{{ "sidebar.clients.label" | trans | upper }}</span>
+            <i class="fas fa-angle-down position-absolute" style="right: 1.1rem; top: 40%"></i>
+            {#            <div class="d-none d-lg-block text-gray-400 small mt-1 font-italic">{{ "sidebar.siv_msg" | trans }}</div>#}
+        </a>
+
+        <div id="collapseClients" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-people-group"></i>&nbsp;{{ "sidebar.clients.label" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-envelope"></i>&nbsp;{{ "sidebar.clients.newsletter" | trans | upper }}
+                </a>
+                <a class="collapse-item disabled text-muted" href="#">
+                    <i class="fas fa-blog"></i>&nbsp;{{ "sidebar.clients.blog" | trans | upper }}
+                </a>
+            </div>
+        </div>
+
+    </li>
+
 
     <!-- Nav Item - Stock -->
 
-    <li class="nav-item {{ active_section == 2 ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-boxes-stacked"></i>
-            <span>Stock</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-light py-2 collapse-inner rounded">
-                <h6 class="collapse-header text-success">Prestataires</h6>
-                <a class="collapse-item disabled" href="{{ path('app_fournisseurs_index') }}">Fournisseurs</a>
-                <a class="collapse-item disabled" href="cards.html">Robots</a>
+{#    <li class="nav-item {{ active_section == 2 ? 'active' : '' }}">#}
+{#        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"#}
+{#           aria-expanded="true" aria-controls="collapseTwo">#}
+{#            <i class="fas fa-fw fa-boxes-stacked"></i>#}
+{#            <span>Stock</span>#}
+{#        </a>#}
+{#        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">#}
+{#            <div class="bg-light py-2 collapse-inner rounded">#}
+{#                <h6 class="collapse-header text-success">Prestataires</h6>#}
+{#                <a class="collapse-item disabled" href="{{ path('app_fournisseurs_index') }}">Fournisseurs</a>#}
+{#                <a class="collapse-item disabled" href="cards.html">Robots</a>#}
 
-                <h6 class="collapse-header text-success">Ventes et Prestations</h6>
-                <a class="collapse-item disabled" href="{{ path('app_marques_index') }}">Marques & Modéles</a>
-                <a class="collapse-item disabled" href="{{ path('app_portes_index') }}">Portes</a>
-                <a class="collapse-item" href="{{ path('app_energies_index') }}">Energies</a>
-                <a class="collapse-item disabled" href="{{ path('app_bonus_malus_index') }}">Bonus / Malus</a>
+{#                <h6 class="collapse-header text-success">Ventes et Prestations</h6>#}
+{#                <a class="collapse-item disabled" href="{{ path('app_marques_index') }}">Marques & Modéles</a>#}
+{#                <a class="collapse-item disabled" href="{{ path('app_portes_index') }}">Portes</a>#}
+{#                <a class="collapse-item" href="{{ path('app_energies_index') }}">Energies</a>#}
+{#                <a class="collapse-item disabled" href="{{ path('app_bonus_malus_index') }}">Bonus / Malus</a>#}
 
-                <h6 class="collapse-header text-success">Définitions</h6>
-                <a class="collapse-item disabled" href="cards.html">Configurateur Neuf</a>
-                <a class="collapse-item disabled" href="cards.html">Véhicules Stock</a>
-                <a class="collapse-item disabled" href="cards.html">SIV</a>
-                <a class="collapse-item disabled" href="cards.html">Promotions</a>
+{#                <h6 class="collapse-header text-success">Définitions</h6>#}
+{#                <a class="collapse-item disabled" href="cards.html">Configurateur Neuf</a>#}
+{#                <a class="collapse-item disabled" href="cards.html">Véhicules Stock</a>#}
+{#                <a class="collapse-item disabled" href="cards.html">SIV</a>#}
+{#                <a class="collapse-item disabled" href="cards.html">Promotions</a>#}
 
-            </div>
-        </div>
-    </li>
+{#            </div>#}
+{#        </div>#}
+{#    </li>#}
 
     <!-- Nav Item - Clients -->
-    <li class="nav-item {{ active_section == 3 ? 'active' : '' }}">
-        <a class="nav-link" href="{{ path('app_clients') }}">
-            <i class="fas fa-fw fa-user-friends"></i>
-            <span>Clients</span></a>
-    </li>
+{#    <li class="nav-item {{ active_section == 3 ? 'active' : '' }}">#}
+{#        <a class="nav-link" href="{{ path('app_clients') }}">#}
+{#            <i class="fas fa-fw fa-user-friends"></i>#}
+{#            <span>Clients</span></a>#}
+{#    </li>#}
 
     <!-- Nav Item - Devis -->
-    <li class="nav-item {{ active_section == 4 ? 'active' : '' }}">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-euro-sign"></i>
-            <span>Devis</span></a>
-    </li>
+{#    <li class="nav-item {{ active_section == 4 ? 'active' : '' }}">#}
+{#        <a class="nav-link" href="index.html">#}
+{#            <i class="fas fa-fw fa-euro-sign"></i>#}
+{#            <span>Devis</span></a>#}
+{#    </li>#}
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+{#    <hr class="sidebar-divider">#}
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        System
-    </div>
+{#    <div class="sidebar-heading">#}
+{#        System#}
+{#    </div>#}
 
 {#    <!-- Nav Item - Pages Collapse Menu -->#}
 {#    <li class="nav-item">#}
@@ -103,11 +320,11 @@
 {#    </li>#}
 
     <!-- Nav Item - Stock -->
-    <li class="nav-item {{ active_section == 5 ? 'active' : '' }}">
-        <a class="nav-link" href="{{ path('app_settings') }}">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Settings</span></a>
-    </li>
+{#    <li class="nav-item {{ active_section == 5 ? 'active' : '' }}">#}
+{#        <a class="nav-link" href="{{ path('app_settings') }}">#}
+{#            <i class="fas fa-fw fa-wrench"></i>#}
+{#            <span>Settings</span></a>#}
+{#    </li>#}
 
 {#    <!-- Nav Item - Utilities Collapse Menu -->#}
 {#    <li class="nav-item">#}
@@ -175,7 +392,7 @@
 {#    <hr class="sidebar-divider d-none d-md-block">#}
 
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
+    <div class="text-center d-none d-md-inline mt-2">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 

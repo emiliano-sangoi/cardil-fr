@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/portes')]
 class PortesController extends AbstractController
 {
-    const SIDEBAR_ID = 2;
+    const SIDEBAR_ID = 4;
 
     #[Route('/', name: 'app_portes_index', methods: ['GET'])]
     public function index(PorteRepository $porteRepository, TranslatorInterface $translator): Response

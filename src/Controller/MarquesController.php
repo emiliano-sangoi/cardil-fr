@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/marques')]
 class MarquesController extends AbstractController
 {
-    const SIDEBAR_ID = 2;
+    const SIDEBAR_ID = 4;
 
     #[Route('/', name: 'app_marques_index', methods: ['GET'])]
     public function index(MarqueRepository $marqueRepository, TranslatorInterface $translator): Response

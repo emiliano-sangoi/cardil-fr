@@ -2,7 +2,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Administration - Login{% endblock %}
-{% block body_css %}bg-gradient-primary{% endblock %}
+{% block body_css %}bg-gradient-orange2{% endblock %}
 
 {% block body %}
 
@@ -47,7 +47,7 @@
                                         <input type="hidden" name="_csrf_token"
                                                value="{{ csrf_token('authenticate') }}">
 
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-secondary btn-user btn-block">
                                             Login
                                         </button>
                                     </form>

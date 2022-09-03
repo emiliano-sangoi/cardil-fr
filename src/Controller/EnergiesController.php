@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/energies')]
 class EnergiesController extends AbstractController
 {
-    const SIDEBAR_ID = 2;
+    const SIDEBAR_ID = 4;
 
     #[Route('/', name: 'app_energies_index', methods: ['GET'])]
     public function index(TranslatorInterface $translator): Response

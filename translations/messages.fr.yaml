@@ -33,6 +33,47 @@ Providers: Fournisseurs
 Commertial name: Nom Commercial
 Upload: Envoyer
 Country: Pays
+sidebar:
+  home: Accueil
+  home_msg: Page principale
+  suscriptions: Abonnements
+  suscriptions_msg: Gestion des abonnés
+  suscriptions_per_client: Abonnement
+  suscriptions_per_client_msg: Gestion abonnement par client
+  brands: Marques
+  brands_msg: Fabrique des marques
+  conf: Configurateur
+  conf_msg: Determine le prix des véhicules
+  usine: En commande usine
+  stock: Stock et arrivages
+  transport: Transporteurs
+  transport_msg: Détermine les coûts de transport
+  robots: Robots
+  robots_msg: Récupération du stock des fournisseurs
+  providers: Fournisseurs
+  providers_msg: Récupération du stock des fournisseurs
+  geo: Geographie
+  geo_msg: Pays et départements
+  country: Pays
+  departments: Départements
+  siv:
+    siv: SIV
+    msg: Gestion des immatriculations
+    fixed_costs: Frais fixes SIV
+    taxes: Taxe au poids
+    bonus_malus: Bonus Malus
+  finnantial:
+    label: Financement
+    msg: Gestion des financements
+    credit_info: Info crédit classique
+    loa_info: Info LOA
+    lld_info: Info LLD
+  clients:
+    label: Clients et Blog
+    msg: Gestion des clients, newsletter et blog
+    newsletter: Newsletter
+    blog: Blog
+
 
 form:
   fournisseur:

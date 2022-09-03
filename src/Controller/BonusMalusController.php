@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/bonus/malus')]
 class BonusMalusController extends AbstractController
 {
-    const SIDEBAR_ID = 2;
+    const SIDEBAR_ID = 10;
 
     #[Route('/', name: 'app_bonus_malus_index', methods: ['GET'])]
     public function index(BonusMalusRepository $bonusMalusRepository, TranslatorInterface $translator): Response

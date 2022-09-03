@@ -5,13 +5,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractController
 {
     #[Route('/', name: 'app_dashboard')]
-    public function index(ChartBuilderInterface $chartBuilder): Response
+    public function index(ChartBuilderInterface $chartBuilder, TranslatorInterface $translator): Response
     {
 
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
@@ -40,7 +41,7 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DefaultController',
-            'page_title' => 'Dashboard',
+            'page_title' => $translator->trans('sidebar.home'),
             'active_section' => 1,
             'chart' => $chart
         ]);
