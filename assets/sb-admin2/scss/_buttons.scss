@@ -50,3 +50,19 @@
     }
   }
 }
+
+.btn-orange {
+    @include button-variant($orange, $orange);
+}
+
+.btn-outline-orange {
+    @include button-outline-variant($orange);
+}
+
+.btn-orange2 {
+    @include button-variant($orange2, $orange2);
+}
+
+.btn-outline-orange2 {
+    @include button-outline-variant($orange2);
+}

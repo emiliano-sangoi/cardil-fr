@@ -33,6 +33,7 @@ Providers: Fournisseurs
 Commertial name: Nom Commercial
 Upload: Envoyer
 Country: Pays
+
 sidebar:
   home: Accueil
   home_msg: Page principale
@@ -95,6 +96,7 @@ form:
 
   livraison_centre:
     labels:
-      name: Nom
+      nom: Nom
       cost: Cout
       state: Etat
+

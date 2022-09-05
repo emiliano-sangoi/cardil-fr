@@ -1,0 +1,36 @@
+function initMap(id, center, currentZoom, maxZoom = 19) {
+
+    var map = L.map(id).setView(center, currentZoom);
+    var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: maxZoom,
+        //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    return map;
+};
+
+
+var map = initMap('map', [41.909986, 12.3959157], 8, 19);
+
+var myIcon = L.icon({
+    iconUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png",
+    // iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    // shadowUrl: 'my-icon-shadow.png',
+    //  shadowSize: [68, 95],
+    shadowAnchor: [22, 94]
+});
+
+var markerOptions = {
+    icon: myIcon
+};
+
+var marker = L.marker([41.909986, 12.3959157], markerOptions).addTo(map)
+    .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+var marker = L.marker([42.416055, 12.848037], markerOptions).addTo(map)
+    .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+var marker = L.marker([41.6345472, 13.3026606], markerOptions).addTo(map)
+    .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();

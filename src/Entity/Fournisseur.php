@@ -66,9 +66,6 @@ class Fournisseur implements \JsonSerializable
     #[ORM\Column]
     private ?int $etat = 1;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $emplacementFile = null;
-
     #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: LivraisonCentre::class)]
     private Collection $livraisonCenters;
 
@@ -302,17 +299,25 @@ class Fournisseur implements \JsonSerializable
         return $this;
     }
 
-    public function getEmplacementFile(): ?string
+    /**
+     * @return array
+     */
+    public function getLivraisonCentersCount(): array
     {
-        return $this->emplacementFile;
+        $res = [
+            'total' => 0,
+            'activos' => 0
+        ];
+        foreach ($this->livraisonCenters as $l){
+            $res['total']++;
+            if($l->getEtat() == LivraisonCentre::ETAT_OUI){
+                $res['activos']++;
+            }
+        }
+
+        return $res;
     }
 
-    public function setEmplacementFile(?string $emplacementFile): self
-    {
-        $this->emplacementFile = $emplacementFile;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LivraisonCentre>

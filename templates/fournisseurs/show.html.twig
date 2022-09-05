@@ -1,10 +1,6 @@
 {% extends 'base-admin.html.twig' %}
 
 {% block stylesheets %}
-    {#    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" #}
-    {#          integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" #}
-    {#          crossorigin=""/> #}
-
     {{ parent() }}
 
     <style>
@@ -12,17 +8,12 @@
             height: 75%;
         }
     </style>
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    {#    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" #}
-    {#            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" #}
-    {#            crossorigin=""></script> #}
 {% endblock %}
 
 {% block main_content %}
     <div class="row mb-4 mb-lg-5">
         <div class="col-12 col-lg-6">
-            <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}" class="btn btn-primary">
+            <a href="{{ path('app_fournisseurs_edit', {'id': fournisseur.id}) }}" class="btn btn-orange2">
                 <i class="fa fa-pencil"></i>&nbsp;{{ "Edit"|trans }}
             </a>
             <a href="{{ path('app_fournisseurs_index') }}" class="btn btn-outline-secondary">
@@ -40,15 +31,42 @@
         </div>
         <div class="col-12 col-md-4 col-lg-6">
             <div class="h-100">
-{#                <div class="h-100">#}
-                    <label class="font-weight-bold text-dark">
-                        {{ "form.fournisseur.labels.distributionCenters" | trans }}
-                    </label>
-                    <div id="map"></div>
-{#                </div>#}
-{#                <div class="">#}
-                    {% include 'livraison_centres/_table.html.twig' %}
-{#                </div>#}
+                {#                <div class="h-100"> #}
+                <label class="font-weight-bold text-dark">
+                    {{ "form.fournisseur.labels.distributionCenters" | trans }}
+                </label>
+
+                <div id="map"></div>
+
+                <div class="row">
+                <div class="col-12 col-md-8 col-lg-6">
+                <div class="table-responsive mt-2">
+                    <table class="table table-sm table-jus bg-white shadow-sm">
+                        <thead class="bg-gray-400 text-gray-900">
+                        <th class="w-50">Total</th>
+                        <th class="w-50">En ligne</th>
+                        </thead>
+                        <tbody>
+                        {% set c = fournisseur.getLivraisonCentersCount() %}
+                        <tr>
+                            <td>{{ c.total }}</td>
+                            <td>{{ c.activos }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <a href="{{ path('app_livraison_centres_index', { id: fournisseur.id }) }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fa fa-pencil small"></i>
+                        &nbsp;Gestion
+                    </a>
+                </div>
+                </div>
+                </div>
+                {#                </div> #}
+                {#                <div class=""> #}
+                {#                    {% include 'livraison_centres/_table.html.twig' %} #}
+                {#                </div> #}
             </div>
         </div>
     </div>
@@ -59,68 +77,24 @@
  {% block javascripts %}
      {{ parent() }}
 
-{#     <script src="{{ asset('build/maps.js') }}"></script>#}
+     {#     <script src="{{ asset('build/maps.js') }}"></script> #}
+
+     {% include 'livraison_centres/_gmap-show.html.twig' %}
 
      <script>
 
-         function initMap(id, center, currentZoom, maxZoom = 19) {
+         {# var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}"; #}
+         {# var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}"; #}
 
-             var map = L.map(id).setView(center, currentZoom);
-             var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                 maxZoom: maxZoom,
-                 //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-             }).addTo(map);
-
-             return map;
-         };
-
-         $(document).ready(function (e) {
-
-             var map = initMap('map', [41.909986, 12.3959157], 8, 19);
-
-             var myIcon = L.icon({
-                 iconUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png",
-                // iconSize: [38, 95],
-                iconAnchor: [22, 94],
-                 popupAnchor: [-3, -76],
-                // shadowUrl: 'my-icon-shadow.png',
-               //  shadowSize: [68, 95],
-                 shadowAnchor: [22, 94]
-             });
-
-                var markerOptions = {
-                  icon: myIcon
-                };
-
-                 var marker = L.marker([41.909986, 12.3959157], markerOptions).addTo(map)
-                     .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
-
-             var marker = L.marker([42.416055, 12.848037], markerOptions).addTo(map)
-                 .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
-
-             var marker = L.marker([41.6345472,13.3026606], markerOptions).addTo(map)
-                 .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
-
-
-
-
-
-
-         });
-
-
-         var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}";
-         var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}";
-
-         function operateFormatter(value, row, index) {
-             return [
-                 "<a href='"+ url_show_base.replace('-ID-', row.id)
-                 + "' class='btn btn-sm btn-outline-secondary'><i class='fa fa-eye'></i></a>",
-                 '<span class="mx-1"></span>',
-                 '<a href="' + url_edit_base.replace('-ID-', row.id)
-                 + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i></a>'
-             ].join('')
-         }
+         {# function operateFormatter(value, row, index) { #}
+         {#    return [ #}
+         {#        "<a href='"+ url_show_base.replace('-ID-', row.id) #}
+         {#        + "' class='btn btn-sm btn-outline-secondary'><i class='fa fa-eye'></i></a>", #}
+         {#        '<span class="mx-1"></span>', #}
+         {#        '<a href="' + url_edit_base.replace('-ID-', row.id) #}
+         {#        + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i></a>' #}
+         {#    ].join('') #}
+         {# } #}
 
      </script>
  {% endblock %}

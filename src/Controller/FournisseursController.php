@@ -67,6 +67,7 @@ class FournisseursController extends AbstractController
             'fournisseur' => $fournisseur,
             'page_title' => $titulo,
             'active_section' => self::SIDEBAR_ID,
+            'centers' => json_encode($fournisseur->getLivraisonCenters()->toArray()),
             'form' => $form->createView()
         ]);
     }

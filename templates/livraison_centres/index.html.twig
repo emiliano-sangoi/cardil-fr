@@ -1,45 +1,63 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}LivraisonCentre index{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
 
-{% block body %}
-    <h1>LivraisonCentre index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Altitude</th>
-                <th>Etat</th>
-                <th>Cout</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for livraison_centre in livraison_centres %}
-            <tr>
-                <td>{{ livraison_centre.id }}</td>
-                <td>{{ livraison_centre.nom }}</td>
-                <td>{{ livraison_centre.latitude }}</td>
-                <td>{{ livraison_centre.longitude }}</td>
-                <td>{{ livraison_centre.altitude }}</td>
-                <td>{{ livraison_centre.etat }}</td>
-                <td>{{ livraison_centre.cout }}</td>
-                <td>
-                    <a href="{{ path('app_livraison_centres_show', {'id': livraison_centre.id}) }}">show</a>
-                    <a href="{{ path('app_livraison_centres_edit', {'id': livraison_centre.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_livraison_centres_new') }}">Create new</a>
+    <style>
+        #map {
+            height: 50vh;
+        }
+    </style>
 {% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 py-0">
+            {% embed 'livraison_centres/_table.html.twig' %}
+                {% block toolbar %}
+                    <a href="{{ path('app_livraison_centres_new', { 'id' : fournisseur.id }) }}" class="btn btn-orange2">
+                        <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
+                    </a>
+                    <a href="#" onclick="history.back()" class="btn btn-outline-secondary">
+                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                    </a>
+                {% endblock %}
+            {% endembed %}
+        </div>
+        <div class="col-12 col-md-4 col-lg-6">
+            <div class="h-100">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {#    <a href="{{ path('app_livraison_centres_show', {'id': livraison_centre.id}) }}">show</a> #}
+    {#    <a href="{{ path('app_livraison_centres_edit', {'id': livraison_centre.id}) }}">edit</a> #}
+
+    {#    <a href="{{ path('app_livraison_centres_new') }}">Create new</a> #}
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+
+     {% include 'livraison_centres/_gmap-show.html.twig' %}
+
+     <script>
+
+          var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}";
+          var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}";
+
+          function operateFormatter(value, row, index) {
+              return [
+                  '<a href="' + url_show_base.replace('-ID-', row.id)
+                  + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                  '<span class="mx-1"></span>',
+                  '<a href="' + url_edit_base.replace('-ID-', row.id)
+                  + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+              ].join('')
+          }
+
+     </script>
+ {% endblock %}

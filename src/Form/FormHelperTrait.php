@@ -10,16 +10,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 trait FormHelperTrait
 {
+    private $labelPrefix = '';
 
     public function addTextChild($child, FormBuilderInterface $builder, array $options = []){
-        $options['label'] = 'form.fournisseur.labels.' . $child;
+        $options['label'] = $this->labelPrefix . $child;
 
         $builder
             ->add($child, TextType::class, $options);
     }
 
     public function addEmailChild($child, FormBuilderInterface $builder, array $options = []){
-        $options['label'] = 'form.fournisseur.labels.' . $child;
+        $options['label'] = $this->labelPrefix . $child;
 
         $builder
             ->add($child, EmailType::class, $options);

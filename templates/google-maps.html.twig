@@ -1,0 +1,38 @@
+<script>
+
+    var map_id = "{{ map_id|default('map') }}";
+    var center_lat = "{{ center_lat|default(-25.344) }}";
+    var center_lng = "{{ center_lng|default(131.031) }}";
+
+
+    // Initialize and add the map
+    function initGoogleMap() {
+
+        var center = {
+            lat: center_lat,
+            lng: center_lng
+        };
+
+        options = {
+            zoom: 4,
+            streetViewControl: false,
+            center: center,
+        };
+
+
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById(map_id), options);
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+            position: center,
+            map: map,
+        });
+
+        return map;
+    }
+
+
+</script>
+
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_key }}&callback={{ callback|default('initGoogleMap') }}&v=weekly"></script>

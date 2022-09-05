@@ -1,32 +1,37 @@
-<div class="row">
-    <div class="col-12">
+<div id="toolbar" class="mb-2">
+    {% block toolbar %}
+        {# Buttons ... #}
+    {% endblock %}
+</div>
 
-{#        <div id="toolbar">#}
-{#            <a href="{{ path('app_bonus_malus_new') }}" class="btn btn-primary mb-3">#}
-{#                <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}#}
-{#            </a>#}
-{#        </div>#}
-
-        <table
-            id="table"
-            class="table table-sm bg-white text-dark"
-            data-toggle="table"
-            data-search="true"
-{#            data-toolbar="#toolbar"#}
-            data-show-refresh="true"
-            data-show-columns="true"
-            data-sortable="true"
-            data-pagination="true"
-            data-header-style="headerStyle"
-            data-url="{{ path( 'app_livraison_centres_index_json', { id: fournisseur.id } ) }}">
-            <thead>
-            <tr>
-                <th data-field="nom" data-sortable="true" >{{ 'form.livraison_centre.labels.name'| trans }}</th>
-                <th data-field="cout" data-sortable="true" data-formatter="coutFormatter">{{ 'form.livraison_centre.labels.cost'| trans }}</th>
-                <th data-field="etat" data-sortable="true">{{ 'form.livraison_centre.labels.state'| trans }}</th>
-                <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
+<div class="table-responsive">
+    <table
+        id="table"
+        class="table table-sm bg-white text-dark"
+        data-toggle="table"
+        data-search="true"
+        data-toolbar="#toolbar"
+        {#    data-show-refresh="true" #}
+        {#    data-show-columns="true" #}
+        data-sortable="true"
+        data-pagination="true"
+        data-header-style="headerStyle"
+        data-url="{{ path( 'app_livraison_centres_index_json', { id: fournisseur.id } ) }}">
+        <thead>
+        <tr>
+            <th data-field="nom" data-sortable="true">
+                {{ 'form.livraison_centre.labels.name'| trans }}
+            </th>
+            <th data-field="cout" data-sortable="true" data-formatter="coutFormatter">
+                {{ 'form.livraison_centre.labels.cost'| trans }}
+            </th>
+            <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">
+                {{ 'Online'| trans }}
+            </th>
+            <th data-formatter="operateFormatter">
+                {{ 'Actions'| trans }}
+            </th>
+        </tr>
+        </thead>
+    </table>
 </div>
