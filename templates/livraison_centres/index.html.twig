@@ -52,10 +52,10 @@
           function operateFormatter(value, row, index) {
               return [
                   '<a href="' + url_show_base.replace('-ID-', row.id)
-                  + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                  + '" class="btn btn-sm btn-outline-secondary disabled"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
                   '<span class="mx-1"></span>',
                   '<a href="' + url_edit_base.replace('-ID-', row.id)
-                  + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+                  + '" class="btn btn-sm btn-outline-danger disabled"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
               ].join('')
           }
 

@@ -1,3 +1,21 @@
+/*
+* IMPORTANTE PARA PROD:
+* ======================================================================================================
+*
+* https://symfony.com/doc/current/frontend/encore/faq.html#my-app-lives-under-a-subdirectory
+* Para produccion se debe cambiar:
+*   // public path used by the web server to access the output path
+    .setPublicPath('/build')
+    // only needed for CDN's or sub-directory deploy
+    //.setManifestKeyPrefix('build/')
+*
+* Por:
+*   // public path used by the web server to access the output path
+    .setPublicPath('/sy/build')
+    // only needed for CDN's or sub-directory deploy
+    .setManifestKeyPrefix('build/')
+* */
+
 const Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.

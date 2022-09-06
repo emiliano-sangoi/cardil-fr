@@ -44,6 +44,11 @@ class LivraisonCentre implements \JsonSerializable
     #[ORM\JoinColumn(nullable: false)]
     private ?Fournisseur $fournisseur = null;
 
+    public function __construct()
+    {
+        $this->etat = self::ETAT_OUI;
+    }
+
     public function jsonSerialize(): mixed
     {
         return [

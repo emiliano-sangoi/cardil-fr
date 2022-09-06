@@ -15,6 +15,11 @@ class FournisseurType extends AbstractType
 {
     use FormHelperTrait;
 
+    public function __construct()
+    {
+        $this->labelPrefix = 'form.fournisseur.labels.';
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->addTextChild('nomCommercial', $builder);
