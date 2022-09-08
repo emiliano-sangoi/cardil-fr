@@ -96,6 +96,7 @@ form:
 
   livraison_centre:
     labels:
+      add: Ajouter livraison centre
       nom: Nom
       cost: Cout
       state: Etat

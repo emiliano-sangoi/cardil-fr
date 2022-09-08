@@ -5,7 +5,7 @@
 
     <style>
         #map {
-            height: 50vh;
+            height: 600px;
         }
     </style>
 {% endblock %}
@@ -43,19 +43,20 @@
      {{ parent() }}
 
      {% include 'livraison_centres/_gmap-show.html.twig' %}
+{#     {% include 'livraison_centres/_gplaces-search-box.html.twig' %}#}
 
      <script>
 
-          var url_show_base = "{{ path('app_fournisseurs_show', {'id': '-ID-'}) }}";
-          var url_edit_base = "{{ path('app_fournisseurs_edit', {'id': '-ID-'}) }}";
+          var url_show_base = "{{ path('app_livraison_centres_show', {'id': '-ID-'}) }}";
+          var url_edit_base = "{{ path('app_livraison_centres_edit', {'id': '-ID-'}) }}";
 
           function operateFormatter(value, row, index) {
               return [
                   '<a href="' + url_show_base.replace('-ID-', row.id)
-                  + '" class="btn btn-sm btn-outline-secondary disabled"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                  + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
                   '<span class="mx-1"></span>',
                   '<a href="' + url_edit_base.replace('-ID-', row.id)
-                  + '" class="btn btn-sm btn-outline-danger disabled"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+                  + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
               ].join('')
           }
 

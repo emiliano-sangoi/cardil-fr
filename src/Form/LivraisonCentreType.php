@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Fournisseur;
 use App\Entity\LivraisonCentre;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,10 +27,29 @@ class LivraisonCentreType extends AbstractType
         $this->addTextChild('nom', $builder);
 
         $builder
-            ->add('latitude', NumberType::class, ['disabled' => true]);
+            ->add('latitude', HiddenType::class);
 
         $builder
-            ->add('longitude', NumberType::class, ['disabled' => true]);
+            ->add('longitude', HiddenType::class);
+
+        $builder
+            ->add('placeId', HiddenType::class);
+
+        $builder
+            ->add('mapUrl', HiddenType::class);
+
+        $builder
+            ->add('adresse', TextType::class, [
+                'attr' => [ 'readonly' => true ]
+            ]);
+
+        $builder
+            ->add('website', TextType::class, [
+                'attr' => [ 'readonly' => true ]
+            ]);
+
+        $builder
+            ->add('internationalPhoneNumber', TextType::class, ['disabled' => true]);
 
         $builder
             ->add('cout');

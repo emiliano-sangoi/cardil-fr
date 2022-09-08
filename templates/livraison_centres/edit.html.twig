@@ -1,13 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}Edit LivraisonCentre{% endblock %}
+{#{% block body %}#}
 
-{% block body %}
-    <h1>Edit LivraisonCentre</h1>
+{#    {{ include('livraison_centres/_form.html.twig', {'button_label': 'Update'}) }}#}
 
-    {{ include('livraison_centres/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_livraison_centres_index') }}">back to list</a>
+{#    {{ include('livraison_centres/_delete_form.html.twig') }}#}
+{#{% endblock %}#}
 
-    {{ include('livraison_centres/_delete_form.html.twig') }}
+
+{% block main_content %}
+    <div class="row">
+
+        <div class="col-12 col-md-8">
+            <div id="map"></div>
+            <form class="">
+                <input
+                    id="pac-input"
+                    class="form-control input-lg controls mt-3 ml-3 w-75 "
+                    type="text"
+                    placeholder="Search a direction ..."/>
+            </form>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="h-100">
+                {% include 'livraison_centres/_form.html.twig' %}
+
+                <div class="row mt-4 mt-lg-5">
+                    <div class="col-12 col-lg-6">
+                        <button class="btn btn-primary" type="submit" form="{{ form.vars.attr.id }}">
+                            <i class="fa fa-check"></i>&nbsp;{{ "Save changes"|trans }}
+                        </button>
+                    </div>
+                    <div class="col-12 col-lg-6 text-lg-right   ">
+                        <a href="{{ path('app_livraison_centres_index', { id : fournisseur.id }) }}"
+                           class="btn btn-outline-secondary">
+                            <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+
+     {% include 'livraison_centres/_gplaces-search-box.html.twig' %}
+
+ {% endblock %}

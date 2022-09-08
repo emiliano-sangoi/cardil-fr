@@ -1,46 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}LivraisonCentre{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
 
-{% block body %}
-    <h1>LivraisonCentre</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ livraison_centre.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ livraison_centre.nom }}</td>
-            </tr>
-            <tr>
-                <th>Latitude</th>
-                <td>{{ livraison_centre.latitude }}</td>
-            </tr>
-            <tr>
-                <th>Longitude</th>
-                <td>{{ livraison_centre.longitude }}</td>
-            </tr>
-            <tr>
-                <th>Altitude</th>
-                <td>{{ livraison_centre.altitude }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ livraison_centre.etat }}</td>
-            </tr>
-            <tr>
-                <th>Cout</th>
-                <td>{{ livraison_centre.cout }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_livraison_centres_index') }}">back to list</a>
-
-    <a href="{{ path('app_livraison_centres_edit', {'id': livraison_centre.id}) }}">edit</a>
-
-    {{ include('livraison_centres/_delete_form.html.twig') }}
+    <style>
+        #map {
+            height: 600px;
+        }
+    </style>
 {% endblock %}
+
+{% block main_content %}
+    <div class="row">
+
+        <div class="col-12 col-md-8">
+            <div id="map"></div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="h-100">
+                {% include 'livraison_centres/_form.html.twig' %}
+
+                <div class="row mt-4 mt-lg-5">
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ path('app_livraison_centres_index', { id : fournisseur.id }) }}"
+                           class="btn btn-outline-secondary">
+                            <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                        </a>
+                    </div>
+                    <div class="col-12 col-lg-6 text-lg-right   ">
+                        <a class="btn btn-outline-danger" href="{{ path('app_livraison_centres_edit', {'id': livraison_centre.id}) }}">
+                            <i class="fa fa-pencil"></i>&nbsp;{{ "Edit"|trans  }}
+                        </a>
+                        {{ include('livraison_centres/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+
+     {% include 'livraison_centres/_gmap-show.html.twig' %}
+
+ {% endblock %}

@@ -44,6 +44,21 @@ class LivraisonCentre implements \JsonSerializable
     #[ORM\JoinColumn(nullable: false)]
     private ?Fournisseur $fournisseur = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $placeId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $internationalPhoneNumber = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mapUrl = null;
+
     public function __construct()
     {
         $this->etat = self::ETAT_OUI;
@@ -67,7 +82,7 @@ class LivraisonCentre implements \JsonSerializable
         $metadata->addPropertyConstraint('nom', new Assert\NotBlank());
 
         $metadata->addConstraint(new UniqueEntity([
-            'fields' => [ 'raisonSociale' ]
+            'fields' => [ 'nom' ]
         ]));
 
         $metadata->addPropertyConstraint('etat', new Assert\NotBlank());
@@ -166,6 +181,66 @@ class LivraisonCentre implements \JsonSerializable
     public function setFournisseur(?Fournisseur $fournisseur): self
     {
         $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getPlaceId(): ?string
+    {
+        return $this->placeId;
+    }
+
+    public function setPlaceId(?string $placeId): self
+    {
+        $this->placeId = $placeId;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): self
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    public function getInternationalPhoneNumber(): ?string
+    {
+        return $this->internationalPhoneNumber;
+    }
+
+    public function setInternationalPhoneNumber(?string $internationalPhoneNumber): self
+    {
+        $this->internationalPhoneNumber = $internationalPhoneNumber;
+
+        return $this;
+    }
+
+    public function getMapUrl(): ?string
+    {
+        return $this->mapUrl;
+    }
+
+    public function setMapUrl(?string $mapUrl): self
+    {
+        $this->mapUrl = $mapUrl;
 
         return $this;
     }

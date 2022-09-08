@@ -50,12 +50,13 @@ class LivraisonCentresController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $livraisonCentreRepository->add($livraisonCentre, true);
 
-            return $this->redirectToRoute('app_livraison_centres_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_livraison_centres_index', [ 'id' => $fournisseur->getId() ], Response::HTTP_SEE_OTHER);
         }
 
-        $titulo = $translator->trans('Providers') . ' - ' . $translator->trans('Show');
+        $titulo = $fournisseur->getNomCommercial() . ' - ' . $translator->trans('form.livraison_centre.labels.add');
 
         return $this->renderForm('livraison_centres/new.html.twig', [
             'livraison_centre' => $livraisonCentre,
@@ -70,9 +71,20 @@ class LivraisonCentresController extends AbstractController
     #[Route('/livraison-centres/{id}', name: 'app_livraison_centres_show', methods: ['GET'])]
     public function show(LivraisonCentre $livraisonCentre, TranslatorInterface $translator): Response
     {
+        $form = $this->createForm(LivraisonCentreType::class, $livraisonCentre, [
+            'disabled' => true
+        ]);
+
+        $fournisseur = $livraisonCentre->getFournisseur();
+        $titulo = $livraisonCentre->getNom() . ' - ' . $translator->trans('Show');
+
         return $this->render('livraison_centres/show.html.twig', [
             'livraison_centre' => $livraisonCentre,
             'active_section' => self::SIDEBAR_ID,
+            'page_title' => $titulo,
+            'form' => $form->createView(),
+            'fournisseur' => $fournisseur,
+            'centers' => json_encode($fournisseur->getLivraisonCenters()->toArray()),
         ]);
     }
 
@@ -85,12 +97,20 @@ class LivraisonCentresController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $livraisonCentreRepository->add($livraisonCentre, true);
 
-            return $this->redirectToRoute('app_livraison_centres_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_livraison_centres_index',
+                [ 'id' => $livraisonCentre->getFournisseur()->getId() ],
+                Response::HTTP_SEE_OTHER);
         }
+
+        $fournisseur = $livraisonCentre->getFournisseur();
+        $titulo = $livraisonCentre->getNom() . ' - ' . $translator->trans('Edit');
 
         return $this->renderForm('livraison_centres/edit.html.twig', [
             'livraison_centre' => $livraisonCentre,
             'form' => $form,
+            'page_title' => $titulo,
+            'fournisseur' => $fournisseur,
+            'centers' => json_encode($fournisseur->getLivraisonCenters()->toArray()),
             'active_section' => self::SIDEBAR_ID,
         ]);
     }
@@ -102,6 +122,8 @@ class LivraisonCentresController extends AbstractController
             $livraisonCentreRepository->remove($livraisonCentre, true);
         }
 
-        return $this->redirectToRoute('app_livraison_centres_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_livraison_centres_index',
+            [ 'id' => $livraisonCentre->getFournisseur()->getId() ],
+            Response::HTTP_SEE_OTHER);
     }
 }
