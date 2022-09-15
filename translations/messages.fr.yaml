@@ -1,7 +1,7 @@
 Id: Id
-New: Ajouter
-Add:  Ajouter
-Edit energie: Edition de l'énergie
+#New: Ajouter
+#Add:  Ajouter
+#Edit energie: Edition de l'énergie
 Name: Nom
 Online: En ligne?
 Yes: Oui
@@ -23,16 +23,27 @@ Delete: Supprimer
 Models: Modèles
 Model: Modèle
 Models amount: Modèles quantit
-Brands & Models: Marques & Modéles
-List: Liste
+#Brands & Models: Marques & Modéles
+#List: Liste
 Transport type: Transport type
 Are you sure you want to delete this item?: Confirmer la suppression ?
 Bonus/Malus: Bonus/Malus
 Charge: Montant
-Providers: Fournisseurs
 Commertial name: Nom Commercial
 Upload: Envoyer
-Country: Pays
+
+
+actions:
+  list: Liste
+  add: Ajouter
+  show: Voir
+  edit: Éditer
+  delete: Delete
+  save: Sauvegarder les modifications
+  upload: Envoyer
+
+common:
+  online: En ligne?
 
 sidebar:
   home: Accueil
@@ -76,8 +87,16 @@ sidebar:
     blog: Blog
 
 
-form:
+entity:
+  marques:
+    title: Marques & Modéles
+
+  energie:
+    title: Énergies
+
+
   fournisseur:
+    title: Fournisseurs
     labels:
       nomCommercial: Nom Commercial
       raisonSociale: Raison sociale
@@ -95,9 +114,17 @@ form:
       distributionCenters: Centres de livraison
 
   livraison_centre:
+    title: Centres de livraison
     labels:
       add: Ajouter livraison centre
       nom: Nom
       cost: Cout
       state: Etat
+
+  pays:
+    title: Pays
+    labels:
+      nom: Nom
+      abrev: Abreviation
+      order: Ordre
 

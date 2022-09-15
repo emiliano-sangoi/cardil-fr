@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New BoiteDeVitesse{% endblock %}
+
+{% block body %}
+    <h1>Create new BoiteDeVitesse</h1>
+
+    {{ include('boite_de_vitesses/_form.html.twig') }}
+
+    <a href="{{ path('app_boite_de_vitesses_index') }}">back to list</a>
+{% endblock %}

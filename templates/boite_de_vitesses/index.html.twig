@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BoiteDeVitesse index{% endblock %}
+
+{% block body %}
+    <h1>BoiteDeVitesse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Ordre</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for boite_de_vitesse in boite_de_vitesses %}
+            <tr>
+                <td>{{ boite_de_vitesse.id }}</td>
+                <td>{{ boite_de_vitesse.nom }}</td>
+                <td>{{ boite_de_vitesse.ordre }}</td>
+                <td>{{ boite_de_vitesse.etat }}</td>
+                <td>
+                    <a href="{{ path('app_boite_de_vitesses_show', {'id': boite_de_vitesse.id}) }}">show</a>
+                    <a href="{{ path('app_boite_de_vitesses_edit', {'id': boite_de_vitesse.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_boite_de_vitesses_new') }}">Create new</a>
+{% endblock %}
