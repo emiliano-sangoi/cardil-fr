@@ -1,0 +1,73 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block main_content %}
+
+    <div class="row">
+        <div class="col-12">
+
+            <div id="toolbar" class="mb-3">
+                <a href="{{ path('app_pays_new') }}" class="btn btn-orange2">
+                    <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
+                </a>
+                <a href="{{ path('app_pays_index') }}" class="btn btn-outline-secondary">
+                    <i class="fa fa-arrow-left"></i>&nbsp; {{ "Back"|trans }}
+                </a>
+            </div>
+
+            <table
+                id="table"
+                class="table bg-white text-dark"
+                data-toggle="table"
+                data-search="true"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-sortable="true"
+                data-pagination="true"
+                data-header-style="headerStyle"
+                data-url="{{ path('app_pays_index_json') }}">
+                <thead>
+                <tr>
+                    <th data-field="nom" data-sortable="true">{{ 'Name'| trans }}</th>
+                    <th data-field="abrev" data-sortable="true">{{ 'Abrev'| trans }}</th>
+                    <th data-field="ordre" data-sortable="true">{{ 'Order'| trans }}</th>
+                    <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        function etatFormatter(row, index) {
+            if (row == 1) {
+                return '<span class="text-success font-weight-bold"> ' + "{{ "Yes"|trans  }}" + '</span>';
+            }
+            return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
+        }
+
+        var url_show_base = "{{ path('app_pays_show', {'id': '-ID-'}) }}";
+        var url_edit_base = "{{ path('app_pays_edit', {'id': '-ID-'}) }}";
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a href="' + url_show_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                '<span class="mx-1"></span>',
+                '<a href="' + url_edit_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+            ].join('')
+        }
+
+        function headerStyle(column) {
+            return { 'classes': 'bg-secondary font-weight-bold text-white' };
+        }
+
+    </script>
+{% endblock %}

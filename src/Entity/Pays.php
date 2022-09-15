@@ -6,8 +6,14 @@ use App\Repository\PaysRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: PaysRepository::class)]
+#[ORM\Table(name: "pays")]
+#[ORM\UniqueConstraint(name: 'uk1_nom', columns: ['nom'])]
+#[ORM\UniqueConstraint(name: 'uk2_nom', columns: ['abrev'])]
 class Pays implements \JsonSerializable
 {
     #[ORM\Id]
@@ -35,6 +41,22 @@ class Pays implements \JsonSerializable
             'abrev' => $this->abrev,
             'ordre' => $this->ordre,
         ];
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('nom', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('abrev', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('ordre', new Assert\NotBlank());
+
+        $metadata->addConstraint(new UniqueEntity([
+            'fields' => [ 'nom' ]
+        ]));
+
+        $metadata->addConstraint(new UniqueEntity([
+            'fields' => [ 'abrev' ]
+        ]));
+
     }
 
     public function __toString(): string
