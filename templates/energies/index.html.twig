@@ -7,7 +7,7 @@
 
             <div id="toolbar">
                 <a href="{{ path('app_energies_new') }}" class="btn btn-orange2 mb-3">
-                    <i class="fa fa-plus"></i>&nbsp;{{ 'New'| trans }}
+                    <i class="fa fa-plus"></i>&nbsp;{{ 'actions.add'| trans }}
                 </a>
             </div>
 
@@ -25,9 +25,9 @@
                 data-url="{{ path('app_energies_index_json') }}">
                 <thead>
                 <tr>
-                    <th data-field="id" data-sortable="true">{{ 'Id'| trans }}</th>
-                    <th data-field="nom" data-sortable="true">{{ 'Name'| trans }}</th>
-                    <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">{{ 'Online'| trans }}</th>
+                    <th data-field="id" data-sortable="true">{{ 'entity.energies.labels.id'| trans }}</th>
+                    <th data-field="nom" data-sortable="true">{{ 'entity.energies.labels.name'| trans }}</th>
+                    <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">{{ 'entity.energies.labels.online'| trans }}</th>
                     <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
                 </tr>
                 </thead>

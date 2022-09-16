@@ -55,6 +55,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import "~bootstrap-table/src/bootstrap-table";
 @import "~leaflet/dist/leaflet.css";
 
+// Bootstrap icons
+@import "~bootstrap-icons/font/bootstrap-icons";
+
 table th.detail{
     background-color: $secondary;
 }

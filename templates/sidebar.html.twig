@@ -78,7 +78,9 @@
                 <a class="collapse-item disabled" href="{{ path('app_portes_index') }}">
                     <i class="fas fa-door-open"></i>&nbsp;Portes
                 </a>
-                <a class="collapse-item disabled text-muted" href="cards.html">Boites de vitesses</a>
+                <a class="collapse-item" href="{{ path('app_boite_de_vitesses_index') }}">
+                    <i class="bi bi-joystick"></i>&nbsp;{{ "entity.boite_de_vitesses.title" | trans }}
+                </a>
                 <a class="collapse-item disabled text-muted" href="cards.html">Type carrosserie</a>
                 <a class="collapse-item disabled text-muted" href="cards.html">Catégories d'options</a>
             </div>

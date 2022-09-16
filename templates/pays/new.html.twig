@@ -4,20 +4,17 @@
     <div class="row">
         <div class="col-12 col-md-6 col-lg-5">
 
-            {% embed 'pays/_form.html.twig' %}
-                {% block form_actions %}
-                {% endblock %}
-            {% endembed %}
+            {% include 'pays/_form.html.twig' %}
 
             <div class="row mt-4 mt-lg-5">
                 <div class="col-12 col-lg-6">
                     <button class="btn btn-primary" type="submit" form="{{ form.vars.attr.id }}">
-                        <i class="fa fa-check"></i>&nbsp;{{ "Create"|trans }}
+                        <i class="fa fa-check"></i>&nbsp;{{ "actions.create"|trans }}
                     </button>
                 </div>
                 <div class="col-12 col-lg-6 text-lg-right   ">
                     <a href="{{ path('app_pays_index') }}" class="btn btn-outline-secondary">
-                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "Back"|trans }}
+                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "actions.back"|trans }}
                     </a>
                 </div>
             </div>

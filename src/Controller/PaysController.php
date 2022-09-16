@@ -47,7 +47,7 @@ class PaysController extends AbstractController
             return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        $titulo = $translator->trans(self::TITLE_KEY) . ' - ' . $translator->trans('Add');
+        $titulo = $translator->trans(self::TITLE_KEY) . ' - ' . $translator->trans('actions.add');
 
         return $this->renderForm('pays/new.html.twig', [
             'pay' => $pay,

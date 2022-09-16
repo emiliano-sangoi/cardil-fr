@@ -7,14 +7,14 @@ Online: En ligne?
 Yes: Oui
 No: Non
 State: Etat
-Save changes: Enregistrer
-Save: Enregistrer
+#Save changes: Enregistrer
+#Save: Enregistrer
 Edit: Modifier
 Actions: Actions
 Show: Regarder
 Search: Recherche
 Energy: Énergies
-Back: Retour
+#Back: Retour
 Delete groups: Suppression groupées
 Stock: Stock
 Doors: Portes
@@ -39,8 +39,11 @@ actions:
   show: Voir
   edit: Éditer
   delete: Delete
-  save: Sauvegarder les modifications
+  save: Sauvegarder
+  save2: Sauvegarder les modifications
   upload: Envoyer
+  create: Create
+  back: Retour
 
 common:
   online: En ligne?
@@ -91,8 +94,12 @@ entity:
   marques:
     title: Marques & Modéles
 
-  energie:
+  energies:
     title: Énergies
+    labels:
+      id: Id
+      name: Nom
+      online: En ligne?
 
 
   fournisseur:
@@ -127,4 +134,11 @@ entity:
       nom: Nom
       abrev: Abreviation
       order: Ordre
+
+  boite_de_vitesses:
+    title: Boite de vitesses
+    labels:
+      nom: Nom
+      order: Ordre
+      state: Etat
 

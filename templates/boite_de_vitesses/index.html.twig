@@ -1,39 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}BoiteDeVitesse index{% endblock %}
+{% block main_content %}
 
-{% block body %}
-    <h1>BoiteDeVitesse index</h1>
+    <div class="row">
+        <div class="col-12">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Ordre</th>
-                <th>Etat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for boite_de_vitesse in boite_de_vitesses %}
-            <tr>
-                <td>{{ boite_de_vitesse.id }}</td>
-                <td>{{ boite_de_vitesse.nom }}</td>
-                <td>{{ boite_de_vitesse.ordre }}</td>
-                <td>{{ boite_de_vitesse.etat }}</td>
-                <td>
-                    <a href="{{ path('app_boite_de_vitesses_show', {'id': boite_de_vitesse.id}) }}">show</a>
-                    <a href="{{ path('app_boite_de_vitesses_edit', {'id': boite_de_vitesse.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div id="toolbar" class="mb-3">
+                <a href="{{ path('app_boite_de_vitesses_new') }}" class="btn btn-orange2">
+                    <i class="fa fa-plus"></i>&nbsp;{{ 'actions.add'| trans }}
+                </a>
+            </div>
 
-    <a href="{{ path('app_boite_de_vitesses_new') }}">Create new</a>
+            <table
+                id="table"
+                class="table bg-white text-dark"
+                data-toggle="table"
+                data-search="true"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-sortable="true"
+                data-pagination="true"
+                data-header-style="headerStyle"
+                data-url="{{ path('app_boite_de_vitesses_index_json') }}">
+                <thead>
+                <tr>
+                    <th data-field="nom" data-sortable="true">{{ 'entity.boite_de_vitesses.labels.nom'| trans }}</th>
+                    <th data-field="etat" data-sortable="true" data-formatter="etatFormatter">{{ 'entity.boite_de_vitesses.labels.state'| trans }}</th>
+                    <th data-field="ordre" data-sortable="true">{{ 'entity.boite_de_vitesses.labels.order'| trans }}</th>
+                    <th data-formatter="operateFormatter">{{ 'Actions'| trans }}</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        function etatFormatter(row, index) {
+            if (row == 1) {
+                return '<span class="text-success font-weight-bold"> ' + "{{ "Yes"|trans  }}" + '</span>';
+            }
+            return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
+        }
+
+        var url_show_base = "{{ path('app_boite_de_vitesses_show', {'id': '-ID-'}) }}";
+        var url_edit_base = "{{ path('app_boite_de_vitesses_edit', {'id': '-ID-'}) }}";
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a href="' + url_show_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "actions.show"|trans  }}" + '</a>',
+                '<span class="mx-1"></span>',
+                '<a href="' + url_edit_base.replace('-ID-', row.id)
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "actions.edit"|trans  }}" + '</a>'
+            ].join('')
+        }
+
+        function headerStyle(column) {
+            return { 'classes': 'bg-secondary font-weight-bold text-white' };
+        }
+
+    </script>
+{% endblock %}
+

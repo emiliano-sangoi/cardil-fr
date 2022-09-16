@@ -11,23 +11,16 @@
 
     <script>
 
-        // $('table').bootstrapTable('mergeCells', {
-        //     index: 1,
-        //     field: 'name',
-        //     //colspan: 2,
-        //     rowspan: 4
-        // })
-
         var url_show_base = "{{ path('app_bonus_malus_show', {'id': '-ID-'}) }}";
         var url_edit_base = "{{ path('app_bonus_malus_edit', {'id': '-ID-'}) }}";
 
         function operateFormatter(value, row, index) {
             return [
                 '<a href="' + url_show_base.replace('-ID-', row.id)
-                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "Show"|trans  }}" + '</a>',
+                + '" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i> ' + "{{ "actions.show"|trans  }}" + '</a>',
                 '<span class="mx-1"></span>',
                 '<a href="' + url_edit_base.replace('-ID-', row.id)
-                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "Edit"|trans  }}" + '</a>'
+                + '" class="btn btn-sm btn-outline-danger"><i class="fa fa-pencil"></i> ' + "{{ "actions.edit"|trans  }}" + '</a>'
             ].join('')
         }
 

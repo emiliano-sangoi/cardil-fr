@@ -2,6 +2,6 @@
       onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ fournisseur.id) }}">
     <button class="btn btn-danger">
-        <i class="fa fa-trash"></i>&nbsp;{{ "Delete" | trans }}
+        <i class="fa fa-trash"></i>&nbsp;{{ "actions.delete" | trans }}
     </button>
 </form>

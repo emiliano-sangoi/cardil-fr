@@ -1,11 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
-{% block title %}New BoiteDeVitesse{% endblock %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-5">
 
-{% block body %}
-    <h1>Create new BoiteDeVitesse</h1>
+            {% include 'boite_de_vitesses/_form.html.twig' %}
 
-    {{ include('boite_de_vitesses/_form.html.twig') }}
-
-    <a href="{{ path('app_boite_de_vitesses_index') }}">back to list</a>
+            <div class="row mt-4 mt-lg-5">
+                <div class="col-12 col-lg-6">
+                    <button class="btn btn-primary" type="submit" form="{{ form.vars.attr.id }}">
+                        <i class="fa fa-check"></i>&nbsp;{{ "actions.create"|trans }}
+                    </button>
+                </div>
+                <div class="col-12 col-lg-6 text-lg-right   ">
+                    <a href="{{ path('app_boite_de_vitesses_index') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-arrow-left"></i>&nbsp;{{ "actions.back"|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
