@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Carrosserie{% endblock %}
+
+{% block body %}
+    <h1>Create new Carrosserie</h1>
+
+    {{ include('carrosseries/_form.html.twig') }}
+
+    <a href="{{ path('app_carrosseries_index') }}">back to list</a>
+{% endblock %}

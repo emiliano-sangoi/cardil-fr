@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carrosserie{% endblock %}
+
+{% block body %}
+    <h1>Carrosserie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ carrosserie.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ carrosserie.nom }}</td>
+            </tr>
+            <tr>
+                <th>Ordre</th>
+                <td>{{ carrosserie.ordre }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ carrosserie.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_carrosseries_index') }}">back to list</a>
+
+    <a href="{{ path('app_carrosseries_edit', {'id': carrosserie.id}) }}">edit</a>
+
+    {{ include('carrosseries/_delete_form.html.twig') }}
+{% endblock %}
