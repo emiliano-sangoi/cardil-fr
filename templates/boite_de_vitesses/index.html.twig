@@ -42,13 +42,6 @@
 
     <script>
 
-        function etatFormatter(row, index) {
-            if (row == 1) {
-                return '<span class="text-success font-weight-bold"> ' + "{{ "Yes"|trans  }}" + '</span>';
-            }
-            return '<span class="text-muted font-weight-bold">' + "{{ "No"|trans  }}" + '</span>';
-        }
-
         var url_show_base = "{{ path('app_boite_de_vitesses_show', {'id': '-ID-'}) }}";
         var url_edit_base = "{{ path('app_boite_de_vitesses_edit', {'id': '-ID-'}) }}";
 

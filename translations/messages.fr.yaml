@@ -142,3 +142,10 @@ entity:
       order: Ordre
       state: Etat
 
+  carroseries:
+    title: Carroseries
+    labels:
+      nom: Nom
+      order: Ordre
+      state: Etat
+
